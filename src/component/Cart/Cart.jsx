@@ -1,14 +1,55 @@
-import { Button, Card, Divider, Modal } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  Divider,
+  Grid,
+  Modal,
+  TextField,
+} from "@mui/material";
 import React from "react";
 import { CartItem } from "./CartItem";
 import { AddressCard } from "./AddressCard";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 import { AddLocation } from "@mui/icons-material";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+// import * as Yup from "yup";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  outline: "none",
+
+  boxShadow: 24,
+  p: 4,
+};
+const initialValues = {
+  detailsAddress: "",
+  street: "",
+  district: "",
+  city: "",
+};
+// const validationSchema=Yup.object.shape({
+//   detailsAddress:Yup.string().required("Details Address is required"),
+//   street:Yup.string().required("Street is required"),
+//   district:Yup.string().required("District is required"),
+//   city:Yup.string().required("City is required")
+// })
 
 const items = [1, 1];
 const Cart = () => {
   const createOrderUsingSelectedAddress = () => {};
-  const handleOpenAddressModal = () => {};
+  const handleOpenAddressModal = () => setOpen(true);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => setOpen(false);
+  const handleSubmit = (values) => {
+    console.log("form value",values)
+  };
   return (
     <>
       <main className="lg:flex justify-between">
@@ -74,9 +115,89 @@ const Cart = () => {
           </div>
         </section>
       </main>
-      {/* <Modal> - continue
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Formik
+            initialValues={initialValues}
+            // validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            <Form>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Field
+                    as={TextField}
+                    name="detailsAddress"
+                    label="Details Address"
+                    fullWidth
+                    variant="outlined"
+                    // error={!ErrorMessage("detailsAddress")}
+                    // helperText={
+                    //   <ErrorMessage>
+                    //     {(msg) => <span className="text-red-600">{msg}</span>}
+                    //   </ErrorMessage>
+                    // }
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field
+                    as={TextField}
+                    name="street"
+                    label="Street"
+                    fullWidth
+                    variant="outlined"
+                    // error={!ErrorMessage("detailsAddress")}
+                    // helperText={
+                    //   <ErrorMessage>
+                    //     {(msg) => <span className="text-red-600">{msg}</span>}
+                    //   </ErrorMessage>
+                    // }
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field
+                    as={TextField}
+                    name="district"
+                    label="District"
+                    fullWidth
+                    variant="outlined"
+                    // error={!ErrorMessage("detailsAddress")}
+                    // helperText={
+                    //   <ErrorMessage>
+                    //     {(msg) => <span className="text-red-600">{msg}</span>}
+                    //   </ErrorMessage>
+                    // }
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field
+                    as={TextField}
+                    name="city"
+                    label="City"
+                    fullWidth
+                    variant="outlined"
+                    // error={!ErrorMessage("detailsAddress")}
+                    // helperText={
+                    //   <ErrorMessage>
+                    //     {(msg) => <span className="text-red-600">{msg}</span>}
+                    //   </ErrorMessage>
+                    // }
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button fullWidth variant="contained" type="submit" color="primary">Deliver Here</Button>
+                </Grid>
+              </Grid>
+            </Form>
 
-      </Modal> */}
+          </Formik>
+        </Box>
+      </Modal>
     </>
   );
 };
