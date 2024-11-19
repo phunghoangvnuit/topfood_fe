@@ -2,6 +2,7 @@ import React from 'react';
 import "./Home.css";
 import MultiItemCarousel from './MultiItemCarousel';
 import RestaurantCard from '../Restaurant/RestaurantCard';
+import { Auth } from 'component/Auth/Auth';
 
 const restaurant = [1,1,1,1,1,1,1,1]
 const Home = () => {
@@ -36,7 +37,6 @@ const Home = () => {
           }
         </div>
       </section>
-      
     </div>
   )
 }
