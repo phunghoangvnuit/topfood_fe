@@ -1,4 +1,4 @@
-const { isPresentInFavourites } = require("component/config/logic");
+const { isPresentInFavourites } = require("../../../config/logic");
 const {
   REGISTER_REQUEST,
   LOGIN_REQUEST,

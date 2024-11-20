@@ -1,5 +1,5 @@
 // Restaurant/Action.js
-import { api } from "../../config/api";
+import { api } from "../../../config/api";
 import { GET_ALL_RESTAURANTS_FAILURE } from "./ActionTypes";
 import { GET_RESTAURANT_BY_ID_SUCCESS } from "./ActionTypes";
 import { CREATE_RESTAURANT_REQUEST } from "./ActionTypes";
