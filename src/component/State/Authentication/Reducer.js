@@ -13,7 +13,7 @@ const {
   ADD_TO_FAVOURITE_FAILURE,
   GET_USER_SUCCESS,
   LOGOUT,
-} = require("./ActionType");
+} = require("./ActionTypes");
 
 const initialState = {
   user: null,
