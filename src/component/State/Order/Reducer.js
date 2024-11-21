@@ -1,4 +1,3 @@
-import { GET_USER_FAILURE } from "../Authentication/ActionTypes";
 import {
   GET_USERS_NOTIFICATION_SUCCESS,
   GET_USERS_ORDERS_FAILURE,
