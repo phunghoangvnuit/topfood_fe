@@ -1,4 +1,4 @@
-const { isPresentInFavourites } = require("../../../config/logic");
+const { isPresentInFavourites } = require("../../config/logic");
 const {
   REGISTER_REQUEST,
   LOGIN_REQUEST,
@@ -44,6 +44,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         user: action.payload,
+        favourites: action.payload.favourites
       };
     case ADD_TO_FAVOURITE_SUCCESS:
       return {

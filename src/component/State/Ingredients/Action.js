@@ -9,7 +9,7 @@ import {
   GET_INGREDIENT_CATEGORY_SUCCESS,
   UPDATE_STOCK,
 } from "./ActionTypes";
-import { API_URL, api } from "../../../config/api";
+import { API_URL, api } from "../../config/api";
 
 export const getIngredientsOfRestaurant = ({ id, jwt }) => {
   return async (dispatch) => {
