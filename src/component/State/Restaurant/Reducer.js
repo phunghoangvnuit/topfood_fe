@@ -42,7 +42,7 @@ const restaurantReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        retaurant: action.payload,
+        restaurant: action.payload,
       };
     case actionTypes.GET_RESTAURANT_BY_USER_ID_SUCCESS:
     case actionTypes.UPDATE_RESTAURANT_STATUS_SUCCESS:

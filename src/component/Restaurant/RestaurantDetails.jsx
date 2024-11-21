@@ -7,12 +7,14 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import MenuCard from "./MenuCard";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getRestaurantById, getRestaurantsCategory } from "component/State/Restaurant/Action";
 
-const categories = ["All","Pizza", "Noodle", "Burger", "Chicken", "Rice"];
 const foodTypes = [
   { label: "All", value: "all" },
   { label: "Vegetarian Only", value: "vegetarian" },
@@ -24,10 +26,26 @@ const menu = [1,1,1,1,1,1];
 
 const RestaurantDetails = () => {
   const [foodType,setFoodType] = useState("all")
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const {auth,restaurant}=useSelector(store=>store);
+
+  const {id,city} = useParams();
+
 
   const handleFilter = (e) => {
     console.log(e.target.value,e.target.name)
   }
+
+  console.log("restaurant",restaurant);
+
+  useEffect(() => {
+    dispatch(getRestaurantById({jwt,restaurantId:id}))
+    dispatch(getRestaurantsCategory({jwt,restaurantId:id}))
+  },[]);
+
+
   return (
     <div className="px-5 lg:px-20">
       <section>
@@ -39,14 +57,14 @@ const RestaurantDetails = () => {
             <Grid item xs={12}>
               <img
                 className="w-full h-[40vh] object-cover"
-                src="https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src={restaurant.restaurant?.images[0]}
                 alt=""
               />
             </Grid>
             <Grid item xs={12} lg={6}>
               <img
                 className="w-full h-[40vh] object-cover"
-                src="https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src={restaurant.restaurant?.images[1]}
                 alt=""
               />
             </Grid>
@@ -60,12 +78,9 @@ const RestaurantDetails = () => {
           </Grid>
         </div>
         <div className="pt-3 pb-5">
-          <h1 className="text-4xl font-semibold">Banh Mi Viet Nam</h1>
+          <h1 className="text-4xl font-semibold">{restaurant.restaurant?.name}</h1>
           <p className="text-gray-500 mt-1">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga
-            explicabo sit voluptates reiciendis adipisci? Quo ex nostrum vel
-            excepturi saepe autem, a vitae dolorem ducimus blanditiis odit
-            commodi tempora nam.
+            {restaurant.restaurant?.description}
           </p>
 
           <div className="space-y-3 mt-3">
@@ -110,12 +125,12 @@ const RestaurantDetails = () => {
 
               <FormControl className="py-10 space-y-5" component={"fieldset"}>
                 <RadioGroup onChange={handleFilter} name="food_type" value={foodTypes}>
-                  {categories.map((item) => (
+                  {restaurant.categories.map((item) => (
                     <FormControlLabel
                     key={item}
                       value={item}
                       control={<Radio />}
-                      label={item}
+                      label={item.name}
                     />
                   ))}
                 </RadioGroup>
