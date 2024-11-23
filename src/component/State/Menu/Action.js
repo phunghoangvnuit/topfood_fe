@@ -43,7 +43,7 @@ export const getMenuItemsByRestaurantId = (reqData) => {
     dispatch({ type: GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST });
     try {
       const { data } = await api.get(
-        `/api/food/restaurant/${reqData.restaurantId}?vegetarian=${reqData.vegetarian}&nonvegetarian=${reqData.nonvegetarian}
+        `/api/food/restaurant/${reqData.restaurantId}?vegetarian=${reqData.vegetarian}&non_vegetarian=${reqData.non_vegetarian}
         &seasonal=${reqData.seasonal}&food_category=${reqData.foodCategory}`,
         {
           headers: {
@@ -54,6 +54,7 @@ export const getMenuItemsByRestaurantId = (reqData) => {
       console.log("menu item by restaurants", data);
       dispatch({type:GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS,payload:data});
     } catch (error) {
+      console.log("catch error", error);
       dispatch({type:GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE,payload:error});
     }
   };

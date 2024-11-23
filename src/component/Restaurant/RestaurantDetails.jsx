@@ -14,6 +14,7 @@ import MenuCard from "./MenuCard";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getRestaurantById, getRestaurantsCategory } from "component/State/Restaurant/Action";
+import { getMenuItemsByRestaurantId } from "component/State/Menu/Action";
 
 const foodTypes = [
   { label: "All", value: "all" },
@@ -29,7 +30,7 @@ const RestaurantDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
-  const {auth,restaurant}=useSelector(store=>store);
+  const {auth,restaurant,menu}=useSelector(store=>store);
 
   const {id,city} = useParams();
 
@@ -43,6 +44,14 @@ const RestaurantDetails = () => {
   useEffect(() => {
     dispatch(getRestaurantById({jwt,restaurantId:id}))
     dispatch(getRestaurantsCategory({jwt,restaurantId:id}))
+    dispatch(getMenuItemsByRestaurantId(
+      {jwt,
+       restaurantId:id,
+       vegetarian:false,
+       non_vegetarian:false,
+       seasonal:false,
+       foodCategory: ""
+      }));
   },[]);
 
 
@@ -140,7 +149,7 @@ const RestaurantDetails = () => {
         </div>
 
         <div className="space-y-5 lg:w-[80%] lg:pl-10">
-          {menu.map((item)=><MenuCard/>)}
+          {menu.menuItems.map((item)=><MenuCard/>)}
         </div>
       </section>
     </div>
