@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { categorizeIngredients } from "util/categorizeIngredients";
+import { categorizeIngredients } from "component/util/categorizeIngredients";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "component/State/Cart/Action";
 
