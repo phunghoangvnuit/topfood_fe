@@ -19,19 +19,18 @@ import { Delete } from "@mui/icons-material";
 import CreateFoodCategoryForm from "./CreateFoodCategoryForm";
 const orders = [1, 1, 1, 1, 1, 1, 1];
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
 
 export default function FoodCategoryTable() {
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -55,7 +54,6 @@ export default function FoodCategoryTable() {
               <TableRow>
                 <TableCell align="left">Id</TableCell>
                 <TableCell align="left">Name</TableCell>
-
               </TableRow>
             </TableHead>
             <TableBody>
@@ -68,8 +66,6 @@ export default function FoodCategoryTable() {
                     {1}
                   </TableCell>
                   <TableCell align="left">{"name"}</TableCell>
-
-
                 </TableRow>
               ))}
             </TableBody>
@@ -84,9 +80,9 @@ export default function FoodCategoryTable() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <CreateFoodCategoryForm/>
+          <CreateFoodCategoryForm />
         </Box>
-      </Modal>     
+      </Modal>
     </Box>
   );
 }

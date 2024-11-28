@@ -1,10 +1,10 @@
-import { Button, TextField } from "@mui/material";
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
 
-const CreateFoodCategoryForm = () => {
+const CreateIngredientForm = () => {
   const [formData, setFormData] = useState({
-    categoryName: "",
-    resturantId: "",
+    name: "",
+    ingredientCategoryId: "",
   });
   const handleSubmit = () => {
     const data = {
@@ -26,21 +26,37 @@ const CreateFoodCategoryForm = () => {
     <div className="">
       <div className="p-5">
         <h1 className="text-gray-400 text-center text-xl pb-10">
-          Create Food Category
+          Create Ingredient
         </h1>
         <form className="space-y-5" onSubmit={handleSubmit}>
           <TextField
             fullWidth
             id="categoryName"
             name="categoryName"
-            label="Food Category"
+            label="Name"
             variant="outlined"
             onChange={handleInputChange}
             value={formData.categoryName}
           ></TextField>
 
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={formData.ingredientCategoryId}
+                  label="Category"
+                  onChange={handleInputChange}
+                  name="ingredientCategoryId"
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl>
+
           <Button variant="contained" type="submit">
-            Create Category
+            Create Ingredient
           </Button>
         </form>
       </div>
@@ -48,4 +64,4 @@ const CreateFoodCategoryForm = () => {
   );
 };
 
-export default CreateFoodCategoryForm;
+export default CreateIngredientForm;

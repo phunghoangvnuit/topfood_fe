@@ -1,19 +1,13 @@
 import { Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 
-const CreateFoodCategoryForm = () => {
+const CreateIngredientCategoryForm = () => {
   const [formData, setFormData] = useState({
-    categoryName: "",
-    resturantId: "",
+    name: "",
   });
   const handleSubmit = () => {
-    const data = {
-      name: formData.categoryName,
-      restaurantId: {
-        id: 1,
-      },
-    };
-    console.log(data);
+    
+    console.log(formData);
   };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,17 +20,17 @@ const CreateFoodCategoryForm = () => {
     <div className="">
       <div className="p-5">
         <h1 className="text-gray-400 text-center text-xl pb-10">
-          Create Food Category
+          Create Ingredient Category
         </h1>
         <form className="space-y-5" onSubmit={handleSubmit}>
           <TextField
             fullWidth
-            id="categoryName"
-            name="categoryName"
-            label="Food Category"
+            id="name"
+            name="name"
+            label="Category"
             variant="outlined"
             onChange={handleInputChange}
-            value={formData.categoryName}
+            value={formData.name}
           ></TextField>
 
           <Button variant="contained" type="submit">
@@ -48,4 +42,4 @@ const CreateFoodCategoryForm = () => {
   );
 };
 
-export default CreateFoodCategoryForm;
+export default CreateIngredientCategoryForm;
