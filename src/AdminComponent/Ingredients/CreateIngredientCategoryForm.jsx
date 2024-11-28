@@ -27,7 +27,7 @@ const CreateIngredientCategoryForm = () => {
             fullWidth
             id="name"
             name="name"
-            label="Category"
+            label="Name"
             variant="outlined"
             onChange={handleInputChange}
             value={formData.name}

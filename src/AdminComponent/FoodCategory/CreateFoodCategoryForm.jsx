@@ -33,7 +33,7 @@ const CreateFoodCategoryForm = () => {
             fullWidth
             id="categoryName"
             name="categoryName"
-            label="Food Category"
+            label="Name"
             variant="outlined"
             onChange={handleInputChange}
             value={formData.categoryName}
