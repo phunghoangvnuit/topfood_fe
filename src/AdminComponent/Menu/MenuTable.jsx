@@ -15,14 +15,16 @@ import {
 import React from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import { Delete } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 const orders = [1, 1, 1, 1, 1, 1, 1];
 export default function MenuTable() {
+  const navigate = useNavigate();
   return (
     <Box>
       <Card className="mt-1">
         <CardHeader
           action={
-            <IconButton aria-label="settings">
+            <IconButton onClick={()=>navigate("/admin/restaurants/add-menu")} aria-label="settings">
               <CreateIcon />
             </IconButton>
           }
