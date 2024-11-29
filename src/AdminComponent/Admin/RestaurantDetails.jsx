@@ -11,7 +11,7 @@ export const RestaurantDetails = () => {
   const { restaurant } = useSelector((store) => store);
   const dispatch = useDispatch();
 
-  console.log("Restaurant Details",restaurant);
+
   const handleRestaurantStatus = () => {
     dispatch(updateRestaurantStatus({
       restaurantId: restaurant.usersRestaurant.id,

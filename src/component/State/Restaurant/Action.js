@@ -3,7 +3,7 @@
 
 
 
-import { api } from "../../config/api";
+import { api } from "component/config/api";
 import { GET_ALL_RESTAURANTS_FAILURE,
   GET_ALL_RESTAURANTS_SUCCESS,
   GET_ALL_RESTAURANTS_REQUEST,

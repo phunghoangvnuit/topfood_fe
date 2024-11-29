@@ -13,10 +13,12 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import { Delete } from "@mui/icons-material";
 import CreateFoodCategoryForm from "./CreateFoodCategoryForm";
+import { useDispatch, useSelector } from "react-redux";
+import { getRestaurantsCategory } from "component/State/Restaurant/Action";
 const orders = [1, 1, 1, 1, 1, 1, 1];
 const style = {
   position: "absolute",
@@ -31,9 +33,24 @@ const style = {
 };
 
 export default function FoodCategoryTable() {
+  const { restaurant } = useSelector((store) => store);
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  // console.log("Restaurant Details",restaurant);
+
+  useEffect(() => {
+    dispatch(
+      getRestaurantsCategory({
+        jwt,
+        restaurantId: restaurant.usersRestaurant?.id,
+      })
+    );
+
+  }, []);
+
 
   return (
     <Box>
@@ -57,15 +74,15 @@ export default function FoodCategoryTable() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders.map((row) => (
+              {restaurant.categories.map((item) => (
                 <TableRow
-                  key={row.name}
+                  key={item.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
                     {1}
                   </TableCell>
-                  <TableCell align="left">{"name"}</TableCell>
+                  <TableCell align="left">{item.name}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
