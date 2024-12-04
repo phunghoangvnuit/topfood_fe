@@ -15,7 +15,7 @@ export const darkTheme = createTheme({
     background:{
       main: "#FFFFFF",
       default: "#FFFFFF", // chỉnh màu background toàn trang
-      paper: "#0D0D0D"
+      paper: "#FFFFFF" // chỉnh màu cho thẻ restaurant ngoài home
     },
     textColor:{
       main: "#000000"

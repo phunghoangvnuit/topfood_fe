@@ -22,7 +22,7 @@ export const Navbar = () => {
     }
   }
   return (
-    <Box className="px-5 sticky top-0 z-50 py-[.8rem] bg-[#FFFFFF] lg:px-20 flex justify-between">
+    <Box className="px-5 sticky top-0 z-50 py-[.2rem] bg-[#FFFFFF] lg:px-20 flex justify-between" sx={{ boxShadow: 3 }}>
       <div className="lg:mr-10 cursor-pointer flex items-center space-x-4">
         <li onClick={()=>navigate("/")} className="logo font-semibold text-gray-300 text-2xl">
           <img src={nav_logo} alt="" style={{width: "150px"}}/>

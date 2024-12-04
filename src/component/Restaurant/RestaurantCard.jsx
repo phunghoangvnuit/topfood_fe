@@ -41,15 +41,15 @@ const RestaurantCard = ({item}) => {
       </div>
       <div className="p-4 textPart lg:flex w-full justify-between">
         <div className="space-y-1">
-          <p onClick={handleNavigateToRestaurant} className="font-semibold text-lg cursor-pointer">{item.name}</p>
-          <p className="text-gray-500 text-sm">
+          <p onClick={handleNavigateToRestaurant} className="text-lg cursor-pointer" style={{color: "#ED1C24", fontWeight: "500"}}>{item.name}</p>
+          <p style={{color:"#000000", fontWeight: "300", fontSize: "14px"}}>
             {item.description}
           </p>
 
         </div>
         <div>
           <IconButton onClick={handleAddToFavourite}>
-            {isPresentInFavourites(auth.favourites,item)?<FavoriteIcon/>:<FavoriteBorderIcon/>}
+            {isPresentInFavourites(auth.favourites,item)?<FavoriteIcon sx={{ fontSize: "1.5rem", color: "#ED1C24"}} />:<FavoriteBorderIcon sx={{ fontSize: "1.5rem", color: "#ED1C24"}} />}
           </IconButton>
         </div>
 
