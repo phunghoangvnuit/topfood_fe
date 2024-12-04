@@ -67,17 +67,17 @@ const MenuCard = ({ item }) => {
               src={item.images[0]}
               alt=""
             />
-            <div className="space-y-1 lg:space-y-5 lg:max-w-2xl">
+            <div className="space-y-1 lg:space-y-3 lg:max-w-2xl" style={{color: "#000000", fontWeight: "500"}}>
               <p className="font-semibold text-xl">{item.name}</p>
-              <p>{item.price} VND</p>
-              <p className="text-gray-400">{item.description}</p>
+              <p style={{color: "#ED1C24", fontWeight: "500"}}>{item.price} VND</p>
+              <p className="text-gray-400" style={{fontWeight: "400"}}>{item.description}</p>
             </div>
           </div>
         </div>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails sx={{marginTop: "-30px"}}>
         <form onSubmit={handleAddItemToCart}>
-          <div className="flex gap-5 flex-wrap">
+          <div className="flex gap-3 flex-wrap">
             {Object.keys(categorizeIngredients(item.ingredients)).map(
               (category) => (
                 <div>
@@ -90,8 +90,10 @@ const MenuCard = ({ item }) => {
                           control={
                             <Checkbox
                               onChange={() => handleCheckBoxChange(item.name)}
+                              sx={{color: "#000000"}}
                             />
                           }
+                          sx={{color: "#000000"}}
                           label={item.name}
                         />
                       )

@@ -101,19 +101,19 @@ const RestaurantDetails = () => {
           </Grid>
         </div>
         <div className="pt-3 pb-5">
-          <h1 className="text-4xl font-semibold">
+          <h1 className="text-4xl" style={{color: "#ED1C24", fontWeight: "600"}}>
             {restaurant.restaurant?.name}
           </h1>
-          <p className="text-gray-500 mt-1">
+          <p className="text-black mt-1">
             {restaurant.restaurant?.description}
           </p>
 
           <div className="space-y-3 mt-3">
-            <p className="text-gray-500 flex items-center gap-3">
+            <p className="text-black flex items-center gap-3">
               <LocationOnIcon />
               <span>8th, Ton That Thuyet, Nam Tu Liem, Hanoi</span>
             </p>
-            <p className="text-gray-500 flex items-center gap-3">
+            <p className="text-black flex items-center gap-3">
               <CalendarTodayIcon />
               <span>Mon-Sun: 9:00 AM - 09:00 PM (Today)</span>
             </p>
@@ -125,7 +125,7 @@ const RestaurantDetails = () => {
         <div className="space-y-10 lg:w-[20%] filter">
           <div className="box space-y-5 lg:sticky top-28">
             <div>
-              <Typography variant="h5" sx={{ paddingBottom: "1rem" }}>
+              <Typography variant="h5" sx={{ paddingBottom: "1rem", color: "#000000", fontWeight: "500" }}>
                 Food Type
               </Typography>
 
@@ -134,12 +134,13 @@ const RestaurantDetails = () => {
                   onChange={handleFilter}
                   name="food_type"
                   value={foodType}
+                  sx={{color: "#000000"}}
                 >
                   {foodTypes.map((item) => (
                     <FormControlLabel
                       key={item.value}
                       value={item.value}
-                      control={<Radio />}
+                      control={<Radio sx={{color: "#000000"}}/>}
                       label={item.label}
                     />
                   ))}
@@ -148,7 +149,7 @@ const RestaurantDetails = () => {
             </div>
             <Divider />
             <div>
-              <Typography variant="h5" sx={{ paddingBottom: "1rem" }}>
+              <Typography variant="h5" sx={{ paddingBottom: "1rem", color: "#000000", fontWeight: "500"}}>
                 Food Category
               </Typography>
 
@@ -157,14 +158,13 @@ const RestaurantDetails = () => {
                   onChange={handleFilterCategory}
                   name="food_category"
                   value={selectedCategory}
-
-
+                  sx={{color: "#000000"}}
                 >
                   {restaurant.categories.map((item) => (
                     <FormControlLabel
                       key={item}
                       value={item.name}
-                      control={<Radio />}
+                      control={<Radio sx={{color: "#000000"}}/>}
                       label={item.name}
                     />
                   ))}

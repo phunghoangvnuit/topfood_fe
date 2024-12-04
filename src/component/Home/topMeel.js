@@ -33,7 +33,7 @@ export const topMeels = [
   },
   {
     image: "https://cdn.pixabay.com/photo/2020/03/13/10/28/vietnamese-food-4927534_1280.jpg",
-    title: "cá kho"
+    title: "Cá kho"
   },
   {
     image: "https://cdn.pixabay.com/photo/2019/04/17/09/15/crab-4133700_1280.jpg",
