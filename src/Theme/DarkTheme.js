@@ -4,7 +4,7 @@ export const darkTheme = createTheme({
   palette:{
     mode: "dark",
     primary:{
-      main: "#E91E63"
+      main: "#ED1C24"
     },
     secondary:{
       main: "#5A20CB"
@@ -13,12 +13,12 @@ export const darkTheme = createTheme({
       main: "#0D0D0D"
     },
     background:{
-      main: "#0000000",
-      default: "#0D0D0D",
+      main: "#FFFFFF",
+      default: "#FFFFFF", // chỉnh màu background toàn trang
       paper: "#0D0D0D"
     },
     textColor:{
-      main: "#111111"
+      main: "#000000"
     }
   }
 })
