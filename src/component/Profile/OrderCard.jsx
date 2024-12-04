@@ -10,9 +10,9 @@ export const OrderCard = ({item,order}) => {
           src={item.food.images[0]}
           alt=""
         />
-        <div>
+        <div style={{color: "#000000"}}>
           <p>{item.food.name}</p>
-          <p>{item.totalPrice} VND</p>
+          <p style={{color: "#ED1C24"}}>{item.totalPrice} VND</p>
         </div>
       </div>
       <div>

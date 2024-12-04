@@ -44,14 +44,14 @@ export const ProfileNavigation = ({ open, handleClose }) => {
         anchor="left"
         sx={{ zIndex: -1, position:"sticky" }}
       >
-        <div className="w-[50vw] lg:w-[20vw] h-[100vh] flex flex-col justify-center text-xl pt-16 gap-8">
+        <div className="w-[50vw] lg:w-[20vw] h-[100vh] flex flex-col justify-center text-xl pt-16 gap-8" style={{backgroundColor: "#ED1C24"}}>
           {menu.map((item, i) => (
             <>
               <div onClick={()=>handleNavigate(item)} className="px-5 flex items-center space-x-5 cursor-pointer">
                 {item.icon}
                 <span>{item.title}</span>
               </div>
-              {i !== menu.length - 1 && <Divider />}
+              {i !== menu.length - 1 && <Divider sx={{bgcolor: "#D4D4D4", opacity:"0.5"}} />}
             </>
           ))}
         </div>

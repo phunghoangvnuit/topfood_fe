@@ -15,7 +15,7 @@ export const Orders = () => {
   },[auth.jwt])
 
   return (
-    <div className="flex items-center flex-col">
+    <div className="flex items-center flex-col" style={{color: "#000000"}}>
       <h1 className="text-xl text-center py-7 font-semibold">My Orders</h1>
       <div className="space-y-5 w-full lg:w-1/2">
         {

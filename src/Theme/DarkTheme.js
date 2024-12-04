@@ -10,10 +10,10 @@ export const darkTheme = createTheme({
       main: "#5A20CB"
     },
     black:{
-      main: "#0D0D0D"
+      main: "#000000"
     },
     background:{
-      main: "#FFFFFF",
+      main: "#000000",
       default: "#FFFFFF", // chỉnh màu background toàn trang
       paper: "#FFFFFF" // chỉnh màu cho thẻ restaurant ngoài home
     },
@@ -22,3 +22,6 @@ export const darkTheme = createTheme({
     }
   }
 })
+
+
+// gray: #D4D4D4
