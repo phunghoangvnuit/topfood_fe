@@ -43,19 +43,20 @@ export const AdminSideBar = ({ handleClose }) => {
           onClose={handleClose}
           open={true}
           anchor="left"
-          sx={{ zIndex: 1 }}
+          sx={{ zIndex: 1, position:"sticky" }}
         >
-          <div className="w-[70vw] lg:w-[20vw] h-screen flex flex-col justify-center text-xl space-y-[1.65rem]">
+          <div className="w-[70vw] lg:w-[20vw] h-screen flex flex-col justify-center text-xl space-y-[1.65rem]" style={{backgroundColor:"#ED1C24"}}>
             {menu.map((item, i) => (
               <>
                 <div
                   onClick={() => handleNavigate(item)}
                   className="px-5 flex items-center gap-5 cursor-pointer"
+                  style={{color: "#FFFFFF"}}
                 >
                   {item.icon}
                   <span>{item.title}</span>
                 </div>
-                {i !== menu.length - 1 && <Divider />}
+                {i !== menu.length - 1 && <Divider sx={{bgcolor: "#D4D4D4", opacity:"0.5"}}/>}
               </>
             ))}
           </div>

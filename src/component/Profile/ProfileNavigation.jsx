@@ -40,11 +40,11 @@ export const ProfileNavigation = ({ open, handleClose }) => {
       <Drawer
         variant={isSmallScreen ? "temporary" : "permanent"}
         onClose={handleClose}
-        open={isSmallScreen ? open : true}
+        open={true}
         anchor="left"
         sx={{ zIndex: -1, position:"sticky" }}
       >
-        <div className="w-[50vw] lg:w-[20vw] h-[100vh] flex flex-col justify-center text-xl pt-16 gap-8" style={{backgroundColor: "#ED1C24"}}>
+        <div className="w-[70vw] lg:w-[20vw] h-screen flex flex-col justify-center text-xl space-y-[1.65rem]" style={{backgroundColor: "#ED1C24"}}>
           {menu.map((item, i) => (
             <>
               <div onClick={()=>handleNavigate(item)} className="px-5 flex items-center space-x-5 cursor-pointer">
