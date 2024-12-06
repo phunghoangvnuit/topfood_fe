@@ -29,7 +29,7 @@ export const RegisterForm = () => {
   };
   return (
     <div>
-      <Typography variant="h5" className="text-center">
+      <Typography variant="h5" className="text-center" sx={{color:"#ED1C24"}}>
         Register
       </Typography>
 
@@ -42,6 +42,31 @@ export const RegisterForm = () => {
             fullWidth
             variant="outlined"
             margin="normal"
+            InputProps={{
+              sx: { color: "#000000" } // color of text input
+            }}
+            InputLabelProps={{
+              sx: { color: "#9E9E9E" } // color of text placeholder
+            }}
+            sx = {{ // color of inputfield when it actived
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#D4D4D4',
+                  borderWidth: "1px"
+                },
+                '&:hover fieldset': {
+                  borderColor: '#ED1C24',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#ED1C24',
+                },
+              },
+              '& input:-webkit-autofill': {
+                WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                WebkitTextFillColor: '#000000 !important', // Fix text color
+                transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+              },
+            }}
           />
 
           <Field
@@ -51,6 +76,32 @@ export const RegisterForm = () => {
             fullWidth
             variant="outlined"
             margin="normal"
+            type="email"
+            InputProps={{
+              sx: { color: "#000000" } // color of text input
+            }}
+            InputLabelProps={{
+              sx: { color: "#9E9E9E" } // color of text placeholder
+            }}
+            sx = {{ // color of inputfield when it actived
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#D4D4D4',
+                  borderWidth: "1px"
+                },
+                '&:hover fieldset': {
+                  borderColor: '#ED1C24',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#ED1C24',
+                },
+              },
+              '& input:-webkit-autofill': {
+                WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                WebkitTextFillColor: '#000000 !important', // Fix text color
+                transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+              },
+            }}
           />
           <Field
             as={TextField}
@@ -60,6 +111,31 @@ export const RegisterForm = () => {
             variant="outlined"
             margin="normal"
             type="password"
+            InputProps={{
+              sx: { color: "#000000" } // color of text input
+            }}
+            InputLabelProps={{
+              sx: { color: "#9E9E9E" } // color of text placeholder
+            }}
+            sx = {{ // color of inputfield when it actived
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#D4D4D4',
+                  borderWidth: "1px"
+                },
+                '&:hover fieldset': {
+                  borderColor: '#ED1C24',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#ED1C24',
+                },
+              },
+              '& input:-webkit-autofill': {
+                WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                WebkitTextFillColor: '#000000 !important', // Fix text color
+                transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+              },
+            }}
           />
 
           <Field
@@ -72,9 +148,34 @@ export const RegisterForm = () => {
             // value={age}
 
             // onChange={handleChange}
+            sx={{
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#D4D4D4',
+              },
+              '&:hover .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#ED1C24',
+              },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#ED1C24',
+              },
+              '& .MuiSelect-select': {
+                color: '#000000', // Text color for selected value
+              },
+              '& .MuiSvgIcon-root': {
+                color: '#D4D4D4', // Default icon color
+              },
+              '&:hover .MuiSvgIcon-root': {
+                color: '#ED1C24', // Icon color on hover
+              },
+              '&.Mui-focused .MuiSvgIcon-root': {
+                color: '#ED1C24', // Icon color when focused
+              },
+              mt: 2,
+              mb: 1
+            }}
           >
-            <MenuItem value={"ROLE_CUSTOMER"}>Customer</MenuItem>
-            <MenuItem value={"ROLE_RESTAURANT_OWNER"}>
+            <MenuItem sx={{color: "#000000"}} value={"ROLE_CUSTOMER"}>Customer</MenuItem>
+            <MenuItem sx={{color: "#000000"}} value={"ROLE_RESTAURANT_OWNER"}>
               Restaurant Owner
             </MenuItem>
           </Field>
@@ -89,7 +190,7 @@ export const RegisterForm = () => {
           </Button>
         </Form>
       </Formik>
-      <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+      <Typography variant="body2" align="center" sx={{ mt: 3, color:"#9E9E9E" }}>
         If you already have an account?
         <Button size="small" onClick={() => navigate("/account/login")}>
           Login

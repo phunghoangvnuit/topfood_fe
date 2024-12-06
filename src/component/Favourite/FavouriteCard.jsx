@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToFavourite } from 'component/State/Authentication/Action';
 import { isPresentInFavourites } from 'component/config/logic';
 
-const RestaurantFavouriteCard = ({item}) => {
+const FavouriteCard = ({item}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
@@ -52,4 +52,4 @@ const RestaurantFavouriteCard = ({item}) => {
   )
 }
 
-export default RestaurantFavouriteCard
+export default FavouriteCard
