@@ -24,5 +24,5 @@ export const darkTheme = createTheme({
 })
 
 
-// gray: #D4D4D4
-// dark-gray: #9E9E9E
+// gray: #D4D4D4;
+// dark-gray: #9E9E9E = rgba(212, 212, 212, 1);

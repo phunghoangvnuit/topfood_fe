@@ -6,10 +6,10 @@ export const AddressCard = ({ item, showButton, handleSelectAddress }) => {
 
   return (
     <Card className="flex gap-5 w-64 p-5">
-      <HomeIcon />
+      <HomeIcon sx={{color:"#ED1C24"}}/>
       <div className="space-y-3 text-gray-500">
-        <h1 className="font-semibold text-lg text-white">Home</h1>
-        <p>
+        <h1 className="font-semibold text-lg text-white" style={{color:"#ED1C24"}}>Home</h1>
+        <p style={{color:"#000000", fontSize:"14px"}}>
           Detech Building 8th, Ton That Thuyet street , Nam Tu Liem District ,
           Hanoi City, Vietnam
         </p>

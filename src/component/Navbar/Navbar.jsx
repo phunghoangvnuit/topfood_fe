@@ -32,7 +32,7 @@ export const Navbar = () => {
       <div className="flex items-center space-x-2 lg:space-x-10">
         <div className="">
           <IconButton>
-            <SearchIcon sx={{ fontSize: "1.5rem", color: "#ED1C24"}} />
+            <SearchIcon sx={{ fontSize: "1.5rem", color: "#000000"}} />
           </IconButton>
         </div>
         <div className="">
@@ -42,15 +42,15 @@ export const Navbar = () => {
             </Avatar>
           ) : (
             <IconButton onClick={() => navigate("/account/login")}>
-              <Person sx={{ bgcolor: "white", color: "#ED1C24" }}/>
+              <Person sx={{ bgcolor: "white", color: "#000000" }}/>
             </IconButton>
           )}
         </div>
 
         <div className="">
           <IconButton onClick={()=>navigate("/cart")}>
-            <Badge color="primary" badgeContent={cart.cart?.items.length}>
-              <ShoppingCartIcon sx={{ fontSize: "1.5rem", color: "#ED1C24" }} />
+            <Badge sx={{ "& .MuiBadge-badge": { backgroundColor: "#ED1C24" } }} badgeContent={cart.cart?.items.length}>
+              <ShoppingCartIcon sx={{ fontSize: "1.5rem", color: "#000000" }} />
             </Badge>
           </IconButton>
         </div>

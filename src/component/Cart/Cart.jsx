@@ -71,42 +71,42 @@ const Cart = () => {
   return (
     <>
       <main className="lg:flex justify-between">
-        <section className="lg:w-[30%] space-y-6 lg:min-h-screen pt-10">
+        <section className="lg:w-[30%] space-y-6 lg:min-h-screen pt-10" style={{ border: "1px solid rgba(212, 212, 212, 0.5)" }}>
           {cart.cartItems.map((item) => (
             <CartItem item={item}/>
           ))}
-          <Divider />
-          <div className="billDetails px-5 text-sm">
-            <p className="font-extralight py-5">Bill Details</p>
+          <Divider sx={{bgcolor: "#D4D4D4", opacity:"0.5"}} />
+          <div className="billDetails px-5 text-sm" style={{color:"#000000", fontSize:"16px"}}>
+            <p className="py-5" style={{color:"#ED1C24", fontWeight:"600"}}>Bill Details</p>
             <div className="space-y-3">
-              <div className="flex justify-between text-gray-400">
+              <div className="flex justify-between">
                 <p>Item Total</p>
-                <p>{cart.cart?.total} VND</p>
+                <p>{cart.cart?.total}đ</p>
               </div>
-              <div className="flex justify-between text-gray-400">
+              <div className="flex justify-between">
                 <p>Delivery Fee</p>
-                <p>23.000 VND</p>
+                <p>23000đ</p>
               </div>
-              <div className="flex justify-between text-gray-400">
+              <div className="flex justify-between">
                 <p>Tax (VAT)</p>
-                <p>21000 VND</p>
+                <p>21000đ</p>
               </div>
               <Divider />
             </div>
-            <div className="flex justify-between text-gray-400">
+            <div className="flex justify-between" style={{color:"#ED1C24", fontWeight:"600"}}>
               <p>Total pay</p>
-              <p>{cart.cart?.total+23000+21000} VND</p>
+              <p>{cart.cart?.total+23000+21000}đ</p>
             </div>
           </div>
         </section>
         <Divider orientation="vertical" flexItem />
         <section className="lg:w-[70%] flex justify-center px-5 pb-10 lg:pb-0">
           <div>
-            <h1 className="text-center font-semibold text-2xl py-10">
+            <h1 className="text-center font-semibold text-2xl py-10" style={{color:"#ED1C24"}}>
               Choose Delivery Address
             </h1>
             <div className="flex gap-5 flex-wrap justify-center">
-              {[1, 1, 1, 1, 1].map((item) => (
+              {[1, 1].map((item) => (
                 <AddressCard
                   handleSelectAddress={createOrderUsingSelectedAddress}
                   item={item}
@@ -114,9 +114,9 @@ const Cart = () => {
                 />
               ))}
               <Card className="flex gap-5 w-64 p-5">
-                <AddLocation />
-                <div className="space-y-3 text-gray-500">
-                  <h1 className="font-semibold text-lg text-white">
+                <AddLocation sx={{color:"#ED1C24"}}/>
+                <div className="space-y-3">
+                  <h1 className="font-semibold text-lg text-white" style={{color:"#ED1C24"}}>
                     Add New Address
                   </h1>
 
@@ -160,6 +160,31 @@ const Cart = () => {
                     //     {(msg) => <span className="text-red-600">{msg}</span>}
                     //   </ErrorMessage>
                     // }
+                    InputProps={{
+                      sx: { color: "#000000" } // color of text input
+                    }}
+                    InputLabelProps={{
+                      sx: { color: "#9E9E9E" } // color of text placeholder
+                    }}
+                    sx = {{ // color of inputfield when it actived
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: '#D4D4D4',
+                          borderWidth: "1px"
+                        },
+                        '&:hover fieldset': {
+                          borderColor: '#ED1C24',
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#ED1C24',
+                        },
+                      },
+                      '& input:-webkit-autofill': {
+                        WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                        WebkitTextFillColor: '#000000 !important', // Fix text color
+                        transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                      },
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -175,6 +200,31 @@ const Cart = () => {
                     //     {(msg) => <span className="text-red-600">{msg}</span>}
                     //   </ErrorMessage>
                     // }
+                    InputProps={{
+                      sx: { color: "#000000" } // color of text input
+                    }}
+                    InputLabelProps={{
+                      sx: { color: "#9E9E9E" } // color of text placeholder
+                    }}
+                    sx = {{ // color of inputfield when it actived
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: '#D4D4D4',
+                          borderWidth: "1px"
+                        },
+                        '&:hover fieldset': {
+                          borderColor: '#ED1C24',
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#ED1C24',
+                        },
+                      },
+                      '& input:-webkit-autofill': {
+                        WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                        WebkitTextFillColor: '#000000 !important', // Fix text color
+                        transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                      },
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -190,6 +240,31 @@ const Cart = () => {
                     //     {(msg) => <span className="text-red-600">{msg}</span>}
                     //   </ErrorMessage>
                     // }
+                    InputProps={{
+                      sx: { color: "#000000" } // color of text input
+                    }}
+                    InputLabelProps={{
+                      sx: { color: "#9E9E9E" } // color of text placeholder
+                    }}
+                    sx = {{ // color of inputfield when it actived
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: '#D4D4D4',
+                          borderWidth: "1px"
+                        },
+                        '&:hover fieldset': {
+                          borderColor: '#ED1C24',
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#ED1C24',
+                        },
+                      },
+                      '& input:-webkit-autofill': {
+                        WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                        WebkitTextFillColor: '#000000 !important', // Fix text color
+                        transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                      },
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -205,6 +280,31 @@ const Cart = () => {
                     //     {(msg) => <span className="text-red-600">{msg}</span>}
                     //   </ErrorMessage>
                     // }
+                    InputProps={{
+                      sx: { color: "#000000" } // color of text input
+                    }}
+                    InputLabelProps={{
+                      sx: { color: "#9E9E9E" } // color of text placeholder
+                    }}
+                    sx = {{ // color of inputfield when it actived
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: '#D4D4D4',
+                          borderWidth: "1px"
+                        },
+                        '&:hover fieldset': {
+                          borderColor: '#ED1C24',
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#ED1C24',
+                        },
+                      },
+                      '& input:-webkit-autofill': {
+                        WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                        WebkitTextFillColor: '#000000 !important', // Fix text color
+                        transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                      },
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
