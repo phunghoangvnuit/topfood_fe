@@ -31,7 +31,7 @@ const CreateFoodCategoryForm = () => {
   return (
     <div className="">
       <div className="p-5">
-        <h1 className="text-gray-400 text-center text-xl pb-10">
+        <h1 className="text-center text-xl pb-10" style={{color:"#ED1C24"}}>
           Create Food Category
         </h1>
         <form className="space-y-5" onSubmit={handleSubmit}>
@@ -43,6 +43,31 @@ const CreateFoodCategoryForm = () => {
             variant="outlined"
             onChange={handleInputChange}
             value={formData.categoryName}
+            InputProps={{
+              sx: { color: "#000000" } // color of text input
+            }}
+            InputLabelProps={{
+              sx: { color: "#9E9E9E" } // color of text placeholder
+            }}
+            sx = {{ // color of inputfield when it actived
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#D4D4D4',
+                  borderWidth: "1px"
+                },
+                '&:hover fieldset': {
+                  borderColor: '#ED1C24',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#ED1C24',
+                },
+              },
+              '& input:-webkit-autofill': {
+                WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                WebkitTextFillColor: '#000000 !important', // Fix text color
+                transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+              },
+            }}
           ></TextField>
 
           <Button variant="contained" type="submit">

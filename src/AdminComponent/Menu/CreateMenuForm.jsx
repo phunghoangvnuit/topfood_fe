@@ -70,7 +70,7 @@ const CreateMenuForm = () => {
   return (
     <div className="py-10 px-5 lg:flex items-center justify-center min-h-screen">
       <div className="lg:max-w-4xl">
-        <h1 className="font-bold text-2xl text-center py-2">
+        <h1 className="font-bold text-2xl text-center py-2" style={{color:"#ED1C24"}}>
           Add New Food
         </h1>
         <form onSubmit={formik.handleSubmit} className="space-y-4">
@@ -87,9 +87,9 @@ const CreateMenuForm = () => {
               <label className="relative" htmlFor="fileInput">
                 <span
                   className="w-24 h-24 cursor-pointer flex items-center justify-center 
-                p-3 border rounded-md border-gray-600"
+                p-3 border rounded-md" style={{borderColor:"#D4D4D4", borderWidth: "1px"}}
                 >
-                  <AddPhotoAlternate className="text-white" />
+                  <AddPhotoAlternate className="text-white" sx={{color:"#D4D4D4", fontSize:"30px"}}/>
                 </span>
                 {uploadImage && (
                   <div className="absolute left-0 right-0 top-0 bottom-0 w-24 h-24 flex justify-center items-center">
@@ -131,6 +131,31 @@ const CreateMenuForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.name}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
             <Grid item xs={12}>
@@ -142,6 +167,31 @@ const CreateMenuForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.description}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
             <Grid item xs={12} lg={6}>
@@ -153,12 +203,37 @@ const CreateMenuForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.price}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
 
             <Grid item xs={12} lg={6}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                <InputLabel id="demo-simple-select-label" sx={{ color: "#9E9E9E" }}>Category</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -166,8 +241,31 @@ const CreateMenuForm = () => {
                   label="Category"
                   onChange={formik.handleChange}
                   name="category"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#D4D4D4',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#ED1C24',
+                    },
+                    '& .MuiSelect-select': {
+                      color: '#000000', // Text color for selected value
+                    },
+                    '& .MuiSvgIcon-root': {
+                      color: '#D4D4D4', // Default icon color
+                    },
+                    '&:hover .MuiSvgIcon-root': {
+                      color: '#ED1C24', // Icon color on hover
+                    },
+                    '&.Mui-focused .MuiSvgIcon-root': {
+                      color: '#ED1C24', // Icon color when focused
+                    }
+                  }}
                 >
-                  {restaurant.categories?.map((item)=><MenuItem value={item}>{item.name}</MenuItem>)
+                  {restaurant.categories?.map((item)=><MenuItem sx={{color: "#000000"}} value={item}>{item.name}</MenuItem>)
                   }
 
                 </Select>
@@ -176,7 +274,7 @@ const CreateMenuForm = () => {
 
             <Grid item xs={12}>
               <FormControl fullWidth>
-                <InputLabel id="demo-multiple-chip-label">
+                <InputLabel id="demo-multiple-chip-label" sx={{ color: "#9E9E9E" }}>
                   Ingredients
                 </InputLabel>
                 <Select
@@ -192,17 +290,40 @@ const CreateMenuForm = () => {
                       label="Ingredients"
                     />
                   }
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#D4D4D4',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#ED1C24',
+                    },
+                    '& .MuiSelect-select': {
+                      color: '#000000', // Text color for selected value
+                    },
+                    '& .MuiSvgIcon-root': {
+                      color: '#D4D4D4', // Default icon color
+                    },
+                    '&:hover .MuiSvgIcon-root': {
+                      color: '#ED1C24', // Icon color on hover
+                    },
+                    '&.Mui-focused .MuiSvgIcon-root': {
+                      color: '#ED1C24', // Icon color when focused
+                    }
+                  }}
                   renderValue={(selected) => (
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                       {selected.map((value) => (
-                        <Chip key={value.id} label={value.name} />
+                        <Chip sx={{color: "#FFFFFF", backgroundColor: "#000000"}} key={value.id} label={value.name} />
                       ))}
                     </Box>
                   )}
                   // MenuProps={MenuProps}
                 >
                   {ingredients.ingredients?.map((item, index) => (
-                    <MenuItem key={item.id} value={item}>
+                    <MenuItem sx={{color: "#000000"}} key={item.id} value={item}>
                       {item.name}
                     </MenuItem>
                   ))}
@@ -212,7 +333,7 @@ const CreateMenuForm = () => {
 
             <Grid item xs={12} lg={6}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Is Seasonal</InputLabel>
+                <InputLabel id="demo-simple-select-label" sx={{ color: "#9E9E9E" }}>Is Seasonal</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="seasonal"
@@ -220,16 +341,39 @@ const CreateMenuForm = () => {
                   label="Is Seasonal"
                   onChange={formik.handleChange}
                   name="seasonal"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#D4D4D4',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#ED1C24',
+                    },
+                    '& .MuiSelect-select': {
+                      color: '#000000', // Text color for selected value
+                    },
+                    '& .MuiSvgIcon-root': {
+                      color: '#D4D4D4', // Default icon color
+                    },
+                    '&:hover .MuiSvgIcon-root': {
+                      color: '#ED1C24', // Icon color on hover
+                    },
+                    '&.Mui-focused .MuiSvgIcon-root': {
+                      color: '#ED1C24', // Icon color when focused
+                    }
+                  }}
                 >
-                  <MenuItem value={true}>Yes</MenuItem>
-                  <MenuItem value={false}>No</MenuItem>
+                  <MenuItem sx={{color: "#000000"}} value={true}>Yes</MenuItem>
+                  <MenuItem sx={{color: "#000000"}} value={false}>No</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
 
             <Grid item xs={12} lg={6}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Is Vegetarian</InputLabel>
+                <InputLabel id="demo-simple-select-label" sx={{ color: "#9E9E9E" }}>Is Vegetarian</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="vegetarian"
@@ -237,9 +381,32 @@ const CreateMenuForm = () => {
                   label="Is Vegetarian"
                   onChange={formik.handleChange}
                   name="vegetarian"
+                  sx={{
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#D4D4D4',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#ED1C24',
+                    },
+                    '& .MuiSelect-select': {
+                      color: '#000000', // Text color for selected value
+                    },
+                    '& .MuiSvgIcon-root': {
+                      color: '#D4D4D4', // Default icon color
+                    },
+                    '&:hover .MuiSvgIcon-root': {
+                      color: '#ED1C24', // Icon color on hover
+                    },
+                    '&.Mui-focused .MuiSvgIcon-root': {
+                      color: '#ED1C24', // Icon color when focused
+                    }
+                  }}
                 >
-                  <MenuItem value={true}>Yes</MenuItem>
-                  <MenuItem value={false}>No</MenuItem>
+                  <MenuItem sx={{color: "#000000"}} value={true}>Yes</MenuItem>
+                  <MenuItem sx={{color: "#000000"}} value={false}>No</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

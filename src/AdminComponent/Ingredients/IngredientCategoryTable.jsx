@@ -27,7 +27,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  // border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -52,19 +52,19 @@ export default function IngredientCategoryTable() {
         <CardHeader
           action={
             <IconButton onClick={handleOpen} aria-label="settings">
-              <CreateIcon />
+              <CreateIcon sx={{color:"#ED1C24"}}/>
             </IconButton>
           }
           title={"Ingredient Category"}
-          sx={{ pt: 2, alignItems: "center" }}
+          sx={{ pt: 2, alignItems: "center", color:"#ED1C24" }}
         />
 
         <TableContainer component={Paper}>
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="left">Id</TableCell>
-                <TableCell align="left">Name</TableCell>
+                <TableCell sx={{color:"#000000"}} align="left">Id</TableCell>
+                <TableCell sx={{color:"#000000"}} align="left">Name</TableCell>
 
               </TableRow>
             </TableHead>
@@ -74,10 +74,10 @@ export default function IngredientCategoryTable() {
                   key={item.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" sx={{color:"#000000"}}>
                     {item.id}
                   </TableCell>
-                  <TableCell align="left">{item.name}</TableCell>
+                  <TableCell align="left" sx={{color:"#000000"}}>{item.name}</TableCell>
 
 
                 </TableRow>

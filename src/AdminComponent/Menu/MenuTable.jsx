@@ -48,23 +48,23 @@ export default function MenuTable() {
         <CardHeader
           action={
             <IconButton onClick={()=>navigate("/admin/restaurants/add-menu")} aria-label="settings">
-              <CreateIcon />
+              <CreateIcon sx={{color: "#ED1C24"}}/>
             </IconButton>
           }
           title={"Menu"}
-          sx={{ pt: 2, alignItems: "center" }}
+          sx={{ pt: 2, alignItems: "center", color:"#ED1C24" }}
         />
 
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="left">Image</TableCell>
-                <TableCell align="right">Title</TableCell>
-                <TableCell align="right">Ingredients</TableCell>
-                <TableCell align="right">Price</TableCell>
-                <TableCell align="right">Availability</TableCell>
-                <TableCell align="right">Delete</TableCell>
+                <TableCell sx={{color:"#000000"}} align="left">Image</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Title</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Ingredients</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Price</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Availability</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -76,16 +76,16 @@ export default function MenuTable() {
                   <TableCell component="th" scope="row">
                     <Avatar src={item.images[0]}></Avatar>
                   </TableCell>
-                  <TableCell align="right">{item.name}</TableCell>
+                  <TableCell sx={{color:"#000000"}} align="right">{item.name}</TableCell>
                   <TableCell align="right">
-                    {item.ingredients.map((ingredient)=><Chip label={ingredient.name}/>)}
+                    {item.ingredients.map((ingredient)=><Chip sx={{color: "#FFFFFF", backgroundColor: "#000000"}} label={ingredient.name}/>)}
                   </TableCell>
 
-                  <TableCell align="right">{item.price}</TableCell>
-                  <TableCell align="right">{item.available?"in_stock":"out_of_stock"}</TableCell>
+                  <TableCell sx={{color:"#000000"}} align="right">{item.price}</TableCell>
+                  <TableCell sx={{color:"#000000"}} align="right">{item.available?"in_stock":"out_of_stock"}</TableCell>
                   <TableCell align="right">
                     <IconButton color="primary" onClick={()=>handleDeleteFood(item.id)}>
-                      <Delete />
+                      <Delete sx={{color: "#ED1C24"}}/>
                     </IconButton>
                   </TableCell>
                 </TableRow>

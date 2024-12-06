@@ -28,7 +28,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  // border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
@@ -55,21 +55,21 @@ export default function IngredientTable() {
         <CardHeader
           action={
             <IconButton onClick={handleOpen} aria-label="settings">
-              <CreateIcon />
+              <CreateIcon sx={{color:"#ED1C24"}}/>
             </IconButton>
           }
           title={"Ingredients"}
-          sx={{ pt: 2, alignItems: "center" }}
+          sx={{ pt: 2, alignItems: "center", color:"#ED1C24" }}
         />
 
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="left">Id</TableCell>
-                <TableCell align="right">Name</TableCell>
-                <TableCell align="right">Category</TableCell>
-                <TableCell align="right">Availability</TableCell>
+                <TableCell sx={{color:"#000000"}} align="left">Id</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Name</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Category</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Availability</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -78,12 +78,12 @@ export default function IngredientTable() {
                   key={item.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
+                  <TableCell sx={{color:"#000000"}} component="th" scope="row">
                     {item.id}
                   </TableCell>
-                  <TableCell align="right">{item.name}</TableCell>
+                  <TableCell sx={{color:"#000000"}} align="right">{item.name}</TableCell>
 
-                  <TableCell align="right">{item.category.name}</TableCell>
+                  <TableCell sx={{color:"#000000"}} align="right">{item.category.name}</TableCell>
                   <TableCell align="right">
                     <Button onClick={()=>handleUpdateStoke(item.id)}>{item.inStock?"in_stock":"out_of_stock"}</Button>
                   </TableCell>

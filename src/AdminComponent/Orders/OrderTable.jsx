@@ -55,19 +55,20 @@ export default function OrderTable() {
   return (
     <Box>
       <Card className="mt-1">
-        <CardHeader title={"All Orders"} sx={{ pt: 2, alignItems: "center" }} />
+        <CardHeader title={"All Orders"} sx={{ pt: 2, alignItems: "center", color:"#ED1C24" }} />
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Id</TableCell>
-                <TableCell align="right">Image</TableCell>
-                <TableCell align="right">Customer</TableCell>
-                <TableCell align="right">Price</TableCell>
-                <TableCell align="right">Name</TableCell>
-                <TableCell align="right">Ingredients</TableCell>
-                <TableCell align="right">Status</TableCell>
-                <TableCell align="right">Update</TableCell>
+                <TableCell sx={{color:"#000000"}}>Id</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Image</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Customer</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Price</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Quantity</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Name</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Ingredients</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Status</TableCell>
+                <TableCell sx={{color:"#000000"}} align="right">Update</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -76,7 +77,7 @@ export default function OrderTable() {
                   key={item.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" sx={{color:"#000000"}}>
                     {item.id}
                   </TableCell>
                   <TableCell align="right">
@@ -86,10 +87,10 @@ export default function OrderTable() {
                       ))}
                     </AvatarGroup>
                   </TableCell>
-                  <TableCell align="right">{item.customer?.fullName}</TableCell>
-
-                  <TableCell align="right">{item.totalAmount}</TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" sx={{color:"#000000"}}>{item.customer?.fullName}</TableCell>
+                  <TableCell align="right" sx={{color:"#000000"}}>{item.totalPrice}</TableCell>
+                  <TableCell align="right" sx={{color:"#000000"}}>{item.items[0].quantity}</TableCell>
+                  <TableCell align="right" sx={{color:"#000000"}}>
                     {item.items.map((orderItem) => (
                       <p>{orderItem.food?.name}</p>
                     ))}
@@ -98,12 +99,12 @@ export default function OrderTable() {
                     {item.items.map((orderItem) => (
                       <div>
                         {orderItem.ingredients.map((ingredient) => (
-                          <Chip label={ingredient} />
+                          <Chip sx={{color: "#FFFFFF", backgroundColor: "#000000"}} label={ingredient} />
                         ))}
                       </div>
                     ))}
                   </TableCell>
-                  <TableCell align="right">{item.orderStatus}</TableCell>
+                  <TableCell sx={{color:"#000000"}} align="right">{item.orderStatus}</TableCell>
                   <TableCell align="right">
                     <Button
                       id="basic-button"
@@ -124,7 +125,7 @@ export default function OrderTable() {
                       }}
                     >
                       {orderStatus.map((status) => (
-                        <MenuItem onClick={()=>handleUpdateOrder(item.id,status.value)}>{status.label}</MenuItem>
+                        <MenuItem sx={{color:"#000000"}} onClick={()=>handleUpdateOrder(item.id,status.value)}>{status.label}</MenuItem>
                       ))}
                     </Menu>
                   </TableCell>
