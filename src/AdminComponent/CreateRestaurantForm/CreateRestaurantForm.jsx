@@ -79,7 +79,7 @@ const CreateRestaurantForm = () => {
   return (
     <div className="py-10 px-5 lg:flex items-center justify-center min-h-screen">
       <div className="lg:max-w-4xl">
-        <h1 className="font-bold text-2xl text-center py-2">
+        <h1 className="font-bold text-2xl text-center py-2" style={{color:"#ED1C24"}}>
           Add New Restaurant
         </h1>
         <form onSubmit={formik.handleSubmit} className="space-y-4">
@@ -96,9 +96,9 @@ const CreateRestaurantForm = () => {
               <label className="relative" htmlFor="fileInput">
                 <span
                   className="w-24 h-24 cursor-pointer flex items-center justify-center 
-                p-3 border rounded-md border-gray-600"
+                p-3 border rounded-md" style={{borderColor:"#D4D4D4", borderWidth: "1px"}}
                 >
-                  <AddPhotoAlternate className="text-white" />
+                  <AddPhotoAlternate className="text-white" sx={{color:"#D4D4D4", fontSize:"30px"}}/>
                 </span>
                 {uploadImage && (
                   <div className="absolute left-0 right-0 top-0 bottom-0 w-24 h-24 flex justify-center items-center">
@@ -140,6 +140,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.name}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
             <Grid item xs={12}>
@@ -151,6 +176,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.description}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
             <Grid item xs={12} lg={6}>
@@ -162,6 +212,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.cuisineType}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
 
@@ -174,6 +249,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.openingHours}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
 
@@ -186,6 +286,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.detailsAddress}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
             <Grid item xs={12}>
@@ -197,6 +322,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.street}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
 
@@ -209,6 +359,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.district}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
 
@@ -221,6 +396,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.city}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
 
@@ -233,6 +433,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.country}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
 
@@ -245,6 +470,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.email}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
 
@@ -257,6 +507,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.mobile}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
 
@@ -269,6 +544,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.instagram}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
             <Grid item xs={12} lg={6}>
@@ -280,6 +580,31 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.twitter}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
               ></TextField>
             </Grid>
           </Grid>
