@@ -49,7 +49,7 @@ export const Navbar = () => {
 
         <div className="">
           <IconButton onClick={()=>navigate("/cart")}>
-            <Badge sx={{ "& .MuiBadge-badge": { backgroundColor: "#ED1C24" } }} badgeContent={cart.cart?.items.length}>
+            <Badge sx={{ "& .MuiBadge-badge": { backgroundColor: "#ED1C24" } }} badgeContent={cart.cartItems.length}>
               <ShoppingCartIcon sx={{ fontSize: "1.5rem", color: "#000000" }} />
             </Badge>
           </IconButton>
