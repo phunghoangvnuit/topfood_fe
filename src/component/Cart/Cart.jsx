@@ -49,6 +49,20 @@ const Cart = () => {
   const { cart,auth } = useSelector(store=>store);
   const dispatch=useDispatch();
 
+  let price = {
+    items: 0,
+    delivery: 10000,
+    tax: 0,
+    total: 0
+  };
+
+  const calculateItemTotal = () => {
+    price.items = cart.cartItems.reduce((total, item) => total + item.totalPrice, 0);
+    price.delivery = 10000;
+    price.tax = price.items * 0.1;
+    price.total = price.items + price.delivery + price.tax;
+  }; calculateItemTotal();
+
   const handleClose = () => setOpen(false);
   const handleSubmit = (values) => {
     const data = {
@@ -81,21 +95,21 @@ const Cart = () => {
             <div className="space-y-3">
               <div className="flex justify-between">
                 <p>Item Total</p>
-                <p>{cart.cart?.total}đ</p>
+                <p>{price.items}đ</p>
               </div>
               <div className="flex justify-between">
                 <p>Delivery Fee</p>
-                <p>23000đ</p>
+                <p>{price.delivery}đ</p>
               </div>
               <div className="flex justify-between">
                 <p>Tax (VAT)</p>
-                <p>21000đ</p>
+                <p>{price.tax}đ</p>
               </div>
               <Divider />
             </div>
             <div className="flex justify-between" style={{color:"#ED1C24", fontWeight:"600"}}>
               <p>Total pay</p>
-              <p>{cart.cart?.total+23000+21000}đ</p>
+              <p>{price.total}đ</p>
             </div>
           </div>
         </section>
