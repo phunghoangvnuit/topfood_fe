@@ -73,8 +73,10 @@ const Cart = () => {
           fullName:auth.user?.fullName,
           detailsAddress: values.detailsAddress,
           street: values.street,
+          ward: values.ward,
           district: values.district,
-          city: values.city
+          city: values.city,
+          country: "vietnam"
           // phone: values.phone
         }
       }
@@ -206,6 +208,46 @@ const Cart = () => {
                     as={TextField}
                     name="street"
                     label="Street"
+                    fullWidth
+                    variant="outlined"
+                    // error={!ErrorMessage("detailsAddress")}
+                    // helperText={
+                    //   <ErrorMessage>
+                    //     {(msg) => <span className="text-red-600">{msg}</span>}
+                    //   </ErrorMessage>
+                    // }
+                    InputProps={{
+                      sx: { color: "#000000" } // color of text input
+                    }}
+                    InputLabelProps={{
+                      sx: { color: "#9E9E9E" } // color of text placeholder
+                    }}
+                    sx = {{ // color of inputfield when it actived
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: '#D4D4D4',
+                          borderWidth: "1px"
+                        },
+                        '&:hover fieldset': {
+                          borderColor: '#ED1C24',
+                        },
+                        '&.Mui-focused fieldset': {
+                          borderColor: '#ED1C24',
+                        },
+                      },
+                      '& input:-webkit-autofill': {
+                        WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                        WebkitTextFillColor: '#000000 !important', // Fix text color
+                        transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                      },
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field
+                    as={TextField}
+                    name="ward"
+                    label="Ward"
                     fullWidth
                     variant="outlined"
                     // error={!ErrorMessage("detailsAddress")}

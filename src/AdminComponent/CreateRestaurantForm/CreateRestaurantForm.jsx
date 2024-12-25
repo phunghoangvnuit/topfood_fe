@@ -43,9 +43,10 @@ const CreateRestaurantForm = () => {
         address: {
           detailsAddress: values.detailsAddress,
           street: values.street,
+          ward: values.ward,
           district: values.district,
           city: values.city,
-          country: values.country,
+          country: "vietnam",
         },
         contactInformation: {
           email: values.email,
@@ -353,6 +354,43 @@ const CreateRestaurantForm = () => {
             <Grid item xs={12} lg={4}>
               <TextField
                 fullWidth
+                id="ward"
+                name="ward"
+                label="Ward"
+                variant="outlined"
+                onChange={formik.handleChange}
+                value={formik.values.ward}
+                InputProps={{
+                  sx: { color: "#000000" } // color of text input
+                }}
+                InputLabelProps={{
+                  sx: { color: "#9E9E9E" } // color of text placeholder
+                }}
+                sx = {{ // color of inputfield when it actived
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#D4D4D4',
+                      borderWidth: "1px"
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: '#ED1C24',
+                    },
+                  },
+                  '& input:-webkit-autofill': {
+                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
+                    WebkitTextFillColor: '#000000 !important', // Fix text color
+                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
+                  },
+                }}
+              ></TextField>
+            </Grid>
+
+            <Grid item xs={12} lg={4}>
+              <TextField
+                fullWidth
                 id="district"
                 name="district"
                 label="District"
@@ -396,43 +434,6 @@ const CreateRestaurantForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.city}
-                InputProps={{
-                  sx: { color: "#000000" } // color of text input
-                }}
-                InputLabelProps={{
-                  sx: { color: "#9E9E9E" } // color of text placeholder
-                }}
-                sx = {{ // color of inputfield when it actived
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: '#D4D4D4',
-                      borderWidth: "1px"
-                    },
-                    '&:hover fieldset': {
-                      borderColor: '#ED1C24',
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: '#ED1C24',
-                    },
-                  },
-                  '& input:-webkit-autofill': {
-                    WebkitBoxShadow: '0 0 0 100px #FFFFFF inset !important', // Fix background color
-                    WebkitTextFillColor: '#000000 !important', // Fix text color
-                    transition: 'background-color 5000s ease-in-out 0s', // Prevent background flash
-                  },
-                }}
-              ></TextField>
-            </Grid>
-
-            <Grid item xs={12} lg={4}>
-              <TextField
-                fullWidth
-                id="country"
-                name="country"
-                label="Country"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.country}
                 InputProps={{
                   sx: { color: "#000000" } // color of text input
                 }}
