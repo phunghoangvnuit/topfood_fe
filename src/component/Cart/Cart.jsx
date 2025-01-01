@@ -7,7 +7,7 @@ import {
   Modal,
   TextField,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CartItem } from "./CartItem";
 import { AddressCard } from "./AddressCard";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
@@ -15,7 +15,7 @@ import { AddLocation } from "@mui/icons-material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from "component/State/Order/Action";
-// import * as Yup from "yup";
+import { calculateDeliveryFee, estimateDuration, estimateTime } from "component/util/MapBoxAPI";
 
 export const style = {
   position: "absolute",
@@ -25,22 +25,9 @@ export const style = {
   width: 400,
   bgcolor: "background.paper",
   outline: "none",
-
   boxShadow: 24,
   p: 4,
 };
-const initialValues = {
-  detailsAddress: "",
-  street: "",
-  district: "",
-  city: "",
-};
-// const validationSchema=Yup.object.shape({
-//   detailsAddress:Yup.string().required("Details Address is required"),
-//   street:Yup.string().required("Street is required"),
-//   district:Yup.string().required("District is required"),
-//   city:Yup.string().required("City is required")
-// })
 
 const Cart = () => {
   const createOrderUsingSelectedAddress = () => {};
@@ -49,20 +36,80 @@ const Cart = () => {
   const { cart,auth } = useSelector(store=>store);
   const dispatch=useDispatch();
 
-  let price = {
-    items: 0,
-    delivery: 10000,
-    tax: 0,
-    total: 0
+  // Get Restaurant Address (START)
+  const [restaurantAddress, setRestaurantAddress] = useState("");
+  useEffect(() => {
+      if (cart.cartItems.length > 0){
+        const address = cart.cartItems[0].food.restaurant.address;
+        setRestaurantAddress(`${address.detailsAddress}, ${address.street}, ${address.ward}, ${address.district}, ${address.city}`);
+        console.log(address);
+      } else return;
+  }, [cart.cartItems]);
+
+  // Get Delivery Address (START)
+  const initialValues = {
+    detailsAddress: "",
+    street: "",
+    ward: "",
+    district: "",
+    city: "",
+  };
+  const [formValues, setFormValues] = useState({
+    detailsAddress: "",
+    street: "",
+    ward: "",
+    district: "",
+    city: ""
+  });
+  const [deliveryAddress, setDeliveryAddress] = useState("");
+  const handleUpdateAddress = (values) => {
+    setDeliveryAddress(`${values.detailsAddress}, ${values.street}, ${values.ward}, ${values.district}, ${values.city}`);
   };
 
+  // Get Delivery Fee
+  const [deliveryFee, setDeliveryFee] = useState(0);
+  useEffect(() => {
+    const fetchDeliveryFee = async () => {
+      const fee = await calculateDeliveryFee(deliveryAddress, restaurantAddress);
+      setDeliveryFee(fee);
+    };
+    fetchDeliveryFee();
+  }, [deliveryAddress]);
+
+  // Caculate Bill Details
+  let price = {
+    items: 0,
+    delivery: 0,
+    tax: 0
+  };
   const calculateItemTotal = () => {
     price.items = cart.cartItems.reduce((total, item) => total + item.totalPrice, 0);
-    price.delivery = 10000;
-    price.tax = price.items * 0.1;
-    price.total = price.items + price.delivery + price.tax;
-  }; calculateItemTotal();
+    price.delivery = (!deliveryFee) ? 0 : (deliveryFee);
+    price.tax = (price.items + price.delivery) * 0.1;
+  };
+  calculateItemTotal();
 
+  // Get Delivery Time (For Example: Delivery At 10:00 AM)
+  const [deliveryTime, setDeliveryTime] = useState(0);
+  useEffect(() => {
+    const fetchEstimateTime = async () => {
+      const deliveryTime = await estimateTime(deliveryAddress, restaurantAddress);
+      setDeliveryTime(deliveryTime);
+    };
+    fetchEstimateTime();
+  }, [deliveryAddress]);
+
+  // Get Delivery Duration (For Example: Delivery in 15 minutes)
+  const [deliveryDuration, setDeliveryDuration] = useState(0);
+  useEffect(() => {
+    const fetchEstimateDuration = async () => {
+      const deliveryDuration = await estimateDuration(deliveryAddress, restaurantAddress);
+      setDeliveryDuration(deliveryDuration);
+    };
+    fetchEstimateDuration();
+  }, [deliveryAddress]);
+
+  // Handle Submit
   const handleClose = () => setOpen(false);
   const handleSubmit = (values) => {
     const data = {
@@ -70,20 +117,21 @@ const Cart = () => {
       order:{
         restaurantId:cart.cartItems[0].food?.restaurant.id,
         deliveryAddress: {
-          fullName:auth.user?.fullName,
-          detailsAddress: values.detailsAddress,
-          street: values.street,
-          ward: values.ward,
-          district: values.district,
-          city: values.city,
+          fullName: auth.user?.fullName,
+          detailsAddress: formValues.detailsAddress,
+          street: formValues.street,
+          ward: formValues.ward,
+          district: formValues.district,
+          city: formValues.city,
           country: "vietnam"
-          // phone: values.phone
-        }
+        },
+        deliveryFee: deliveryFee,
       }
     }
     dispatch(createOrder(data))
     console.log("form value",values)
   };
+
   return (
     <>
       <main className="lg:flex justify-between">
@@ -93,26 +141,32 @@ const Cart = () => {
           ))}
           <Divider sx={{bgcolor: "#D4D4D4", opacity:"0.5"}} />
           <div className="billDetails px-5 text-sm" style={{color:"#000000", fontSize:"16px"}}>
+              <div className="flex-col justify-left space-y-2">
+                <p style={{color:"#ED1C24", fontWeight:"600"}}>Delivery Address</p>
+                <p>{deliveryAddress}</p>
+                <p>Delivery at: {deliveryTime} ({deliveryDuration} minutes)</p>
+              </div>
             <p className="py-5" style={{color:"#ED1C24", fontWeight:"600"}}>Bill Details</p>
             <div className="space-y-3">
               <div className="flex justify-between">
                 <p>Item Total</p>
-                <p>{price.items}đ</p>
+                <p>{price.items} đ</p>
               </div>
               <div className="flex justify-between">
                 <p>Delivery Fee</p>
-                <p>{price.delivery}đ</p>
+                <p>{price.delivery} đ</p>
               </div>
               <div className="flex justify-between">
                 <p>Tax (VAT)</p>
-                <p>{price.tax}đ</p>
+                <p>{price.tax} đ</p>
               </div>
               <Divider />
             </div>
             <div className="flex justify-between" style={{color:"#ED1C24", fontWeight:"600"}}>
               <p>Total pay</p>
-              <p>{price.total}đ</p>
+              <p>{price.items + price.delivery + price.tax} đ</p>
             </div>
+            <button onClick={handleSubmit} style={{color: "white", background: "#ED1C24", padding: "8px 10px", borderRadius: "3px", marginTop: "80px", width: "100%"}}>Purchase</button>
           </div>
         </section>
         <Divider orientation="vertical" flexItem />
@@ -158,8 +212,10 @@ const Cart = () => {
         <Box sx={style}>
           <Formik
             initialValues={initialValues}
-            // validationSchema={validationSchema}
-            onSubmit={handleSubmit}
+            onSubmit={(values) => {
+              setFormValues(values);
+              handleUpdateAddress(values);
+            }}
           >
             <Form>
               <Grid container spacing={2}>
@@ -170,12 +226,6 @@ const Cart = () => {
                     label="Details Address"
                     fullWidth
                     variant="outlined"
-                    // error={!ErrorMessage("detailsAddress")}
-                    // helperText={
-                    //   <ErrorMessage>
-                    //     {(msg) => <span className="text-red-600">{msg}</span>}
-                    //   </ErrorMessage>
-                    // }
                     InputProps={{
                       sx: { color: "#000000" } // color of text input
                     }}
@@ -210,12 +260,6 @@ const Cart = () => {
                     label="Street"
                     fullWidth
                     variant="outlined"
-                    // error={!ErrorMessage("detailsAddress")}
-                    // helperText={
-                    //   <ErrorMessage>
-                    //     {(msg) => <span className="text-red-600">{msg}</span>}
-                    //   </ErrorMessage>
-                    // }
                     InputProps={{
                       sx: { color: "#000000" } // color of text input
                     }}
@@ -250,12 +294,6 @@ const Cart = () => {
                     label="Ward"
                     fullWidth
                     variant="outlined"
-                    // error={!ErrorMessage("detailsAddress")}
-                    // helperText={
-                    //   <ErrorMessage>
-                    //     {(msg) => <span className="text-red-600">{msg}</span>}
-                    //   </ErrorMessage>
-                    // }
                     InputProps={{
                       sx: { color: "#000000" } // color of text input
                     }}
@@ -290,12 +328,6 @@ const Cart = () => {
                     label="District"
                     fullWidth
                     variant="outlined"
-                    // error={!ErrorMessage("detailsAddress")}
-                    // helperText={
-                    //   <ErrorMessage>
-                    //     {(msg) => <span className="text-red-600">{msg}</span>}
-                    //   </ErrorMessage>
-                    // }
                     InputProps={{
                       sx: { color: "#000000" } // color of text input
                     }}
@@ -330,12 +362,6 @@ const Cart = () => {
                     label="City"
                     fullWidth
                     variant="outlined"
-                    // error={!ErrorMessage("detailsAddress")}
-                    // helperText={
-                    //   <ErrorMessage>
-                    //     {(msg) => <span className="text-red-600">{msg}</span>}
-                    //   </ErrorMessage>
-                    // }
                     InputProps={{
                       sx: { color: "#000000" } // color of text input
                     }}
