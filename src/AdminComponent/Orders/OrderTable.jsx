@@ -19,26 +19,12 @@ import {
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRestaurantsOrder, updateOrderStatus } from "component/State/Restaurant Order/Action";
-const orderStatus = [
-  { label: "Pending", value: "PENDING" },
-  { label: "Completed", value: "COMPLETED" },
-  { label: "Delivering", value: "DELIVERING" },
-  { label: "Delivered", value: "DELIVERED" },
-];
+
 export default function OrderTable() {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
-  const { restaurant, restaurantOrder, ingredients, menu } = useSelector(
-    (store) => store
-  );
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const { restaurant, restaurantOrder } = useSelector((store) => store);
+
   useEffect(() => {
     dispatch(
       fetchRestaurantsOrder({
@@ -46,12 +32,11 @@ export default function OrderTable() {
         restaurantId: restaurant.usersRestaurant?.id,
       })
     );
-  }, []);
+  }, [dispatch, jwt, restaurant.usersRestaurant?.id]);
 
-  const handleUpdateOrder = (orderId,orderStatus) => {
-    dispatch(updateOrderStatus({orderId,orderStatus,jwt}))
-    handleClose();
-  }
+  const handleUpdateOrder = (orderId) => {
+    dispatch(updateOrderStatus({ orderId, jwt }));
+  };
   return (
     <Box>
       <Card className="mt-1">
@@ -108,26 +93,10 @@ export default function OrderTable() {
                   <TableCell align="right">
                     <Button
                       id="basic-button"
-                      aria-controls={open ? "basic-menu" : undefined}
-                      aria-haspopup="true"
-                      aria-expanded={open ? "true" : undefined}
-                      onClick={handleClick}
+                      onClick={() => handleUpdateOrder(item.id)}
                     >
                       UPDATE
                     </Button>
-                    <Menu
-                      id="basic-menu"
-                      anchorEl={anchorEl}
-                      open={open}
-                      onClose={handleClose}
-                      MenuListProps={{
-                        "aria-labelledby": "basic-button",
-                      }}
-                    >
-                      {orderStatus.map((status) => (
-                        <MenuItem sx={{color:"#000000"}} onClick={()=>handleUpdateOrder(item.id,status.value)}>{status.label}</MenuItem>
-                      ))}
-                    </Menu>
                   </TableCell>
                 </TableRow>
               ))}

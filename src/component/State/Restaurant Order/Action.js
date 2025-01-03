@@ -10,13 +10,13 @@ import {
 } from "./ActionTypes.js";
 import { api } from "../../config/api.js";
 
-export const updateOrderStatus = ({orderId,orderStatus,jwt}) => {
+export const updateOrderStatus = ({ orderId, jwt }) => {
   return async (dispatch) => {
     try {
-      dispatch({type:UPDATE_ORDER_STATUS_REQUEST});
+      dispatch({ type: UPDATE_ORDER_STATUS_REQUEST });
 
       const response = await api.put(
-        `/api/admin/order/${orderId}/${orderStatus}`,{},{
+        `/api/admin/order/${orderId}`, {}, {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },
@@ -33,7 +33,7 @@ export const updateOrderStatus = ({orderId,orderStatus,jwt}) => {
       });
     } catch (error) {
       console.log("catch error", error);
-      dispatch({type:UPDATE_ORDER_STATUS_FAILURE,error})
+      dispatch({ type: UPDATE_ORDER_STATUS_FAILURE, error });
     }
   };
 };
