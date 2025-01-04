@@ -6,17 +6,9 @@ export const registerUser=(reqData)=>async(dispatch)=>{
   dispatch({type:REGISTER_REQUEST})
   try{
     const {data} = await axios.post(`${API_URL}/auth/signup`,reqData.userData)
-    if(data.jwt)localStorage.setItem("jwt", data.jwt);
-    if(data.role==="ROLE_RESTAURANT_OWNER"){
-      reqData.navigate("/admin/restaurants")
-    }
-    else{
-      reqData.navigate("/")
-    }
-    dispatch({type:REGISTER_SUCCESS,payload:data.jwt})
+    // dispatch({type:REGISTER_SUCCESS,payload:data.jwt});
+    reqData.navigate("/account/login");
     console.log("register success", data)
-
-
   } catch (error) {
     dispatch({type:REGISTER_FAILURE,payload:error})
     console.log("error",error)
@@ -84,7 +76,6 @@ export const addToFavourite=({jwt,restaurantId})=>async(dispatch)=>{
 export const logout=()=>async(dispatch)=>{
   
   try{
-
     localStorage.clear();
     dispatch({type:LOGOUT})
     console.log("logout success")
