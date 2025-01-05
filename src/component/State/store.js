@@ -7,15 +7,35 @@ import cartReducer from "./Cart/Reducer";
 import { orderReducer } from "./Order/Reducer";
 import restaurantsOrderReducer from "./Restaurant Order/Reducer";
 import { ingredientReducer } from "./Ingredients/Reducer";
+import { LOGOUT } from "./Authentication/ActionTypes";
 
-const rootReducer = combineReducers({
+// const rootReducer = combineReducers({
+//   auth: authReducer,
+//   restaurant: restaurantReducer,
+//   menu: menuItemReducer,
+//   cart: cartReducer,
+//   order: orderReducer,
+//   restaurantOrder: restaurantsOrderReducer,
+//   ingredients: ingredientReducer
+// });
+
+// export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
+
+const appReducer = combineReducers({
   auth: authReducer,
   restaurant: restaurantReducer,
   menu: menuItemReducer,
   cart: cartReducer,
   order: orderReducer,
   restaurantOrder: restaurantsOrderReducer,
-  ingredients: ingredientReducer
+  ingredients: ingredientReducer,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === LOGOUT) {
+    state = undefined;
+  }
+  return appReducer(state, action);
+};
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
