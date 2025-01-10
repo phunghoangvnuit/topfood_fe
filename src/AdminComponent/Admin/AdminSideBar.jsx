@@ -45,7 +45,7 @@ export const AdminSideBar = ({ handleClose }) => {
           anchor="left"
           sx={{ zIndex: 1, position:"sticky" }}
         >
-          <div className="w-[70vw] lg:w-[20vw] h-screen flex flex-col justify-center text-xl space-y-[1.65rem]" style={{backgroundColor:"#ED1C24"}}>
+          <div className="w-[70vw] lg:w-[20vw] h-screen flex flex-col justify-center text-xl space-y-[1.65rem]" style={{backgroundColor:"#212529"}}>
             {menu.map((item, i) => (
               <>
                 <div
