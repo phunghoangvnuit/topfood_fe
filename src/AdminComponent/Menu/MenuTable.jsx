@@ -2,9 +2,7 @@ import {
   Avatar,
   Box,
   Card,
-  CardActions,
   CardHeader,
-  Chip,
   IconButton,
   Paper,
   Table,
@@ -15,22 +13,20 @@ import {
   TableRow,
 } from "@mui/material";
 import React, { useEffect } from "react";
-import CreateIcon from "@mui/icons-material/Create";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import MenuFilter from "./MenuFilter";
 import {
   deleteFoodAction,
   getMenuItemsByRestaurantId,
-  updateMenuItemsAvailability
+  updateMenuItemsAvailability,
 } from "component/State/Menu/Action";
 export default function MenuTable() {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
-  const { restaurant, ingredients, menu } = useSelector((store) => store);
-  const navigate = useNavigate();
+  const { restaurant, menu } = useSelector((store) => store);
 
   useEffect(() => {
     dispatch(
@@ -54,38 +50,33 @@ export default function MenuTable() {
   };
   return (
     <Box>
-      <Card className="mt-1">
+      <Card className="mt-1" sx={{ boxShadow: "none" }}>
         <CardHeader
-          action={
-            <IconButton
-              onClick={() => navigate("/admin/restaurants/add-menu")}
-              aria-label="settings"
-            >
-              <CreateIcon sx={{ color: "#ED1C24" }} />
-            </IconButton>
-          }
           title={"Menu"}
           sx={{ pt: 2, alignItems: "center", color: "#ED1C24" }}
         />
-
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <MenuFilter />
+        <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
+          <Table
+            sx={{ minWidth: 700, tableLayout: "fixed" }}
+            aria-label="simple table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell
-                  sx={{ color: "#000000", width: "5%" }}
+                  sx={{ color: "#000000", width: "10%" }}
                   align="center"
                 >
                   Image
                 </TableCell>
                 <TableCell
-                  sx={{ color: "#000000", width: "25%" }}
+                  sx={{ color: "#000000", width: "20%" }}
                   align="center"
                 >
                   Title
                 </TableCell>
                 <TableCell
-                  sx={{ color: "#000000", width: "15%" }}
+                  sx={{ color: "#000000", width: "10%" }}
                   align="center"
                 >
                   Category
@@ -103,7 +94,7 @@ export default function MenuTable() {
                   Listed Price
                 </TableCell>
                 <TableCell
-                  sx={{ color: "#000000", width: "5%" }}
+                  sx={{ color: "#000000", width: "10%" }}
                   align="center"
                 >
                   Availability
@@ -112,7 +103,7 @@ export default function MenuTable() {
                   sx={{ color: "#000000", width: "10%" }}
                   align="center"
                 >
-                  Delete
+                  Actions
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -122,13 +113,17 @@ export default function MenuTable() {
                   key={item.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    align="center"
-                    sx={{ display: "flex", justifyContent: "center" }}
-                  >
-                    <Avatar src={item.images[0]}></Avatar>
+                  <TableCell component="th" scope="row" align="center">
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Avatar src={item.images[0]}></Avatar>
+                    </div>
                   </TableCell>
                   <TableCell sx={{ color: "#000000" }} align="center">
                     {item.name}
