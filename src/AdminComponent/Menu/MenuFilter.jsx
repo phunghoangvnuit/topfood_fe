@@ -24,7 +24,6 @@ const MenuFilter = () => {
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { restaurant, menu } = useSelector((store) => store);
 
   const handleSearch = (values) => {
     console.log("search values", values);
