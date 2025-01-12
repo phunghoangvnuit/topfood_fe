@@ -60,11 +60,11 @@ export const getMenuItemsByRestaurantId = (reqData) => {
   };
 };
 
-export const searchMenuItem = ({keyword, jwt}) => {
+export const searchMenuItem = ({reqData,jwt}) => {
   return async (dispatch) => {
     dispatch({type: SEARCH_MENU_ITEM_REQUEST});
     try {
-      const { data } = await api.get(`api/food/search?name=${keyword}`,{
+      const { data } = await api.get(`api/food/search?name=${reqData.searchValue.keyword}&availability=${reqData.searchValue.availability}`,{
         headers: {
           Authorization: `Bearer ${jwt}`,
         },

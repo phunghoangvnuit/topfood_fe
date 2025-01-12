@@ -4,7 +4,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { registerUser } from "component/State/Authentication/Action";
+import { searchMenuItem } from "component/State/Menu/Action";
 import { Field, Form, Formik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -16,24 +16,19 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import CategoryIcon from '@mui/icons-material/Category';
 
 const initialValues = {
-  fullName: "",
-  email: "",
-  password: "",
-  role: "",
+  availability: null,
+  keyword: ""
 };
+
 const MenuFilter = () => {
+  const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { restaurant, menu } = useSelector((store) => store);
 
-  const handleSubmit = (values) => {
-    console.log("form values", values);
-    dispatch(registerUser({ userData: values, navigate }));
-  };
-
-  // Handle filter placeholder
-  const [filterValue, setFilterValue] = React.useState("");
-  const handleFilterStyle = (event) => {
-    setFilterValue(event.target.value);
+  const handleSearch = (values) => {
+    console.log("search values", values);
+    dispatch(searchMenuItem({ searchValue: values, jwt }));
   };
 
   return (
@@ -91,20 +86,15 @@ const MenuFilter = () => {
           <CategoryIcon sx={{ width: "18px", marginRight: "3px" }} /> View Category
         </IconButton>        
       </div>
-      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
+      <Formik onSubmit={handleSearch} initialValues={initialValues}>
         <Form>
           <Field
             margin="normal"
             as={Select}
-            labelId="role-simple-select-label"
-            id="role-simple-select"
-            name="role"
+            labelId="filter-simple-select-label"
+            id="filter-simple-select"
+            name="availability"
             displayEmpty
-            value={filterValue} // Bind to a state or prop that holds the current value
-            onChange={handleFilterStyle} // Define a function to handle the value change
-            inputProps={{
-              "aria-label": "Sort By",
-            }}
             startAdornment={
               <InputAdornment position="start">
                 <FilterAltIcon sx={{ color: "#9E9E9E" }} />
@@ -139,7 +129,7 @@ const MenuFilter = () => {
                 borderWidth: "1px"
               },
               "& .MuiSelect-select": {
-                color: filterValue === "" ? "#9E9E9E" : "#000000", // Gray for placeholder, black for selected value
+                color: "#000000",
               },
               "& .MuiSvgIcon-root": {
                 color: "#9E9E9E", // Default icon color
@@ -154,27 +144,19 @@ const MenuFilter = () => {
               mb: 1,
             }}
           >
-            {/* Placeholder MenuItem */}
-            <MenuItem
-              disabled
-              value=""
-              sx={{ color: "#9E9E9E", display: "none" }}
-            >
-              <em>Sort By</em>
-            </MenuItem>
-            <MenuItem sx={{ color: "#000000" }} value="ALL">
+            <MenuItem sx={{ color: "#000000" }} value={null}>
               ALL
             </MenuItem>
-            <MenuItem sx={{ color: "#000000" }} value="IN STOCK">
+            <MenuItem sx={{ color: "#000000" }} value={true}>
               IN STOCK
             </MenuItem>
-            <MenuItem sx={{ color: "#000000" }} value="OUT STOCK">
+            <MenuItem sx={{ color: "#000000" }} value={false}>
               OUT STOCK
             </MenuItem>
           </Field>
           <Field
             as={TextField}
-            name="fullName"
+            name="keyword"
             placeholder="Search by title or cate..."
             variant="outlined"
             margin="normal"
@@ -189,6 +171,7 @@ const MenuFilter = () => {
                   <Button
                     variant="contained"
                     size="small"
+                    type="submit"
                     sx={{
                       backgroundColor: "#004B87", // Button color
                       color: "#FFFFFF", // Text color
