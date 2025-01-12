@@ -29,6 +29,13 @@ const MenuFilter = () => {
     console.log("form values", values);
     dispatch(registerUser({ userData: values, navigate }));
   };
+
+  // Handle filter placeholder
+  const [value, setValue] = React.useState("");
+  const handleFilterPlaceHolder = (event) => {
+    setValue(event.target.value);
+  };
+
   return (
     <div
       style={{
@@ -93,6 +100,8 @@ const MenuFilter = () => {
             id="role-simple-select"
             name="role"
             displayEmpty
+            value={value} // Bind to a state or prop that holds the current value
+            onChange={handleFilterPlaceHolder} // Define a function to handle the value change
             inputProps={{
               "aria-label": "Sort By",
             }}
@@ -109,25 +118,23 @@ const MenuFilter = () => {
                 borderColor: "#9E9E9E",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#ED1C24",
+                borderColor: "#9E9E9E",
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#ED1C24",
+                borderColor: "#9E9E9E",
+                borderWidth: "1px"
               },
               "& .MuiSelect-select": {
-                color: (theme) =>
-                  theme?.value === "" || theme?.value === undefined
-                    ? "#9E9E9E"
-                    : "#000000", // Gray for placeholder
+                color: value === "" ? "#9E9E9E" : "#000000", // Gray for placeholder, black for selected value
               },
               "& .MuiSvgIcon-root": {
                 color: "#9E9E9E", // Default icon color
               },
               "&:hover .MuiSvgIcon-root": {
-                color: "#ED1C24", // Icon color on hover
+                color: "#9E9E9E", // Icon color on hover
               },
               "&.Mui-focused .MuiSvgIcon-root": {
-                color: "#ED1C24", // Icon color when focused
+                color: "#9E9E9E", // Icon color when focused
               },
               mt: 2,
               mb: 1,
@@ -151,49 +158,6 @@ const MenuFilter = () => {
               OUT STOCK
             </MenuItem>
           </Field>
-          {/* <Field
-            as={TextField}
-            name="fullName"
-            placeholder="Search by title or cate..."
-            variant="outlined"
-            margin="normal"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon sx={{ color: "#9E9E9E" }} />
-                </InputAdornment>
-              ),
-              sx: { 
-                height: "40px", // Apply height directly to InputBase
-                color: "#000000", // Text color
-              },
-            }}
-            InputLabelProps={{
-              sx: { color: "#9E9E9E" }, // color of text placeholder
-            }}
-            sx={{
-              width: "300px",
-              height: "40px",
-              // color of inputfield when it actived
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "#9E9E9E",
-                  borderWidth: "1px",
-                },
-                "&:hover fieldset": {
-                  borderColor: "#ED1C24",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "#ED1C24",
-                },
-              },
-              "& input:-webkit-autofill": {
-                WebkitBoxShadow: "0 0 0 100px #FFFFFF inset !important", // Fix background color
-                WebkitTextFillColor: "#000000 !important", // Fix text color
-                transition: "background-color 5000s ease-in-out 0s", // Prevent background flash
-              },
-            }}
-          /> */}
           <Field
             as={TextField}
             name="fullName"
@@ -207,12 +171,14 @@ const MenuFilter = () => {
                     variant="contained"
                     size="small"
                     sx={{
-                      backgroundColor: "#ED1C24", // Button color
+                      backgroundColor: "#004B87", // Button color
                       color: "#FFFFFF", // Text color
                       padding: "0 10px",
                       minWidth: "fit-content",
+                      boxShadow: "none", // Remove box shadow
                       "&:hover": {
-                        backgroundColor: "#D0171F", // Hover color
+                        backgroundColor: "#003B77", // Hover color
+                        boxShadow: "none", // Remove box shadow on hover
                       },
                     }}
                   >
@@ -234,13 +200,13 @@ const MenuFilter = () => {
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
                   borderColor: "#9E9E9E",
-                  borderWidth: "1px",
                 },
                 "&:hover fieldset": {
-                  borderColor: "#ED1C24",
+                  borderColor: "#9E9E9E",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: "#ED1C24",
+                  borderColor: "#9E9E9E",
+                  borderWidth: "1px"
                 },
               },
               "& input:-webkit-autofill": {
