@@ -31,9 +31,9 @@ const MenuFilter = () => {
   };
 
   // Handle filter placeholder
-  const [value, setValue] = React.useState("");
+  const [filterValue, setFilterValue] = React.useState("");
   const handleFilterStyle = (event) => {
-    setValue(event.target.value);
+    setFilterValue(event.target.value);
   };
 
   return (
@@ -100,7 +100,7 @@ const MenuFilter = () => {
             id="role-simple-select"
             name="role"
             displayEmpty
-            value={value} // Bind to a state or prop that holds the current value
+            value={filterValue} // Bind to a state or prop that holds the current value
             onChange={handleFilterStyle} // Define a function to handle the value change
             inputProps={{
               "aria-label": "Sort By",
@@ -139,7 +139,7 @@ const MenuFilter = () => {
                 borderWidth: "1px"
               },
               "& .MuiSelect-select": {
-                color: value === "" ? "#9E9E9E" : "#000000", // Gray for placeholder, black for selected value
+                color: filterValue === "" ? "#9E9E9E" : "#000000", // Gray for placeholder, black for selected value
               },
               "& .MuiSvgIcon-root": {
                 color: "#9E9E9E", // Default icon color
@@ -179,6 +179,11 @@ const MenuFilter = () => {
             variant="outlined"
             margin="normal"
             InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: "#9E9E9E" }} />
+                </InputAdornment>
+              ),
               endAdornment: (
                 <InputAdornment position="end">
                   <Button
@@ -209,7 +214,7 @@ const MenuFilter = () => {
               sx: { color: "#9E9E9E" }, // Placeholder text color
             }}
             sx={{
-              width: "300px",
+              width: "360px",
               height: "40px",
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
