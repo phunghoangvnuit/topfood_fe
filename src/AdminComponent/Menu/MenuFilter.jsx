@@ -32,7 +32,7 @@ const MenuFilter = () => {
 
   // Handle filter placeholder
   const [value, setValue] = React.useState("");
-  const handleFilterPlaceHolder = (event) => {
+  const handleFilterStyle = (event) => {
     setValue(event.target.value);
   };
 
@@ -101,7 +101,7 @@ const MenuFilter = () => {
             name="role"
             displayEmpty
             value={value} // Bind to a state or prop that holds the current value
-            onChange={handleFilterPlaceHolder} // Define a function to handle the value change
+            onChange={handleFilterStyle} // Define a function to handle the value change
             inputProps={{
               "aria-label": "Sort By",
             }}
@@ -110,6 +110,20 @@ const MenuFilter = () => {
                 <FilterAltIcon sx={{ color: "#9E9E9E" }} />
               </InputAdornment>
             }
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  "& .MuiMenuItem-root": {
+                    "&.Mui-selected": {
+                      backgroundColor: "#E0E0E0 !important", // Light gray for selected option
+                      "&:hover": {
+                        backgroundColor: "#BDBDBD !important", // Medium gray for hover effect
+                      },
+                    },
+                  },
+                },
+              },
+            }}
             sx={{
               width: "200px",
               height: "40px",
