@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SearchIcon from "@mui/icons-material/Search";
-import {IconButton} from "@mui/material";
+import {IconButton, Button} from "@mui/material";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import CategoryIcon from '@mui/icons-material/Category';
 
@@ -63,7 +63,7 @@ const MenuFilter = () => {
           <AddCircleOutlineIcon sx={{ width: "18px", marginRight: "3px" }} /> Create
         </IconButton>
         <IconButton
-          onClick={() => navigate("/admin/restaurants/add-menu")}
+          onClick={() => navigate("/admin/restaurants/category")}
           aria-label="settings"
           sx={{
             backgroundColor: "#004B87",
@@ -141,6 +141,9 @@ const MenuFilter = () => {
             >
               <em>Sort By</em>
             </MenuItem>
+            <MenuItem sx={{ color: "#000000" }} value="ALL">
+              ALL
+            </MenuItem>
             <MenuItem sx={{ color: "#000000" }} value="IN STOCK">
               IN STOCK
             </MenuItem>
@@ -148,7 +151,7 @@ const MenuFilter = () => {
               OUT STOCK
             </MenuItem>
           </Field>
-          <Field
+          {/* <Field
             as={TextField}
             name="fullName"
             placeholder="Search by title or cate..."
@@ -172,6 +175,62 @@ const MenuFilter = () => {
               width: "300px",
               height: "40px",
               // color of inputfield when it actived
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "#9E9E9E",
+                  borderWidth: "1px",
+                },
+                "&:hover fieldset": {
+                  borderColor: "#ED1C24",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#ED1C24",
+                },
+              },
+              "& input:-webkit-autofill": {
+                WebkitBoxShadow: "0 0 0 100px #FFFFFF inset !important", // Fix background color
+                WebkitTextFillColor: "#000000 !important", // Fix text color
+                transition: "background-color 5000s ease-in-out 0s", // Prevent background flash
+              },
+            }}
+          /> */}
+          <Field
+            as={TextField}
+            name="fullName"
+            placeholder="Search by title or cate..."
+            variant="outlined"
+            margin="normal"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    sx={{
+                      backgroundColor: "#ED1C24", // Button color
+                      color: "#FFFFFF", // Text color
+                      padding: "0 10px",
+                      minWidth: "fit-content",
+                      "&:hover": {
+                        backgroundColor: "#D0171F", // Hover color
+                      },
+                    }}
+                  >
+                    Search
+                  </Button>
+                </InputAdornment>
+              ),
+              sx: {
+                height: "40px", // Apply height directly to InputBase
+                color: "#000000", // Text color
+              },
+            }}
+            InputLabelProps={{
+              sx: { color: "#9E9E9E" }, // Placeholder text color
+            }}
+            sx={{
+              width: "300px",
+              height: "40px",
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
                   borderColor: "#9E9E9E",
