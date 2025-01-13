@@ -16,7 +16,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import CategoryIcon from '@mui/icons-material/Category';
 
 const initialValues = {
-  availability: null,
+  availability: "",
   keyword: ""
 };
 
@@ -27,7 +27,7 @@ const MenuFilter = () => {
 
   const handleSearch = (values) => {
     console.log("search values", values);
-    dispatch(searchMenuItem({ searchValue: values, jwt }));
+    dispatch(searchMenuItem({ reqData: values, jwt }));
   };
 
   return (
@@ -143,7 +143,7 @@ const MenuFilter = () => {
               mb: 1,
             }}
           >
-            <MenuItem sx={{ color: "#000000" }} value={null}>
+            <MenuItem sx={{ color: "#000000" }} value="">
               ALL
             </MenuItem>
             <MenuItem sx={{ color: "#000000" }} value={true}>

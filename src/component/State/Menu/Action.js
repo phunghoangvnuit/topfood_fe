@@ -64,7 +64,7 @@ export const searchMenuItem = ({reqData,jwt}) => {
   return async (dispatch) => {
     dispatch({type: SEARCH_MENU_ITEM_REQUEST});
     try {
-      const { data } = await api.get(`api/food/search?name=${reqData.searchValue.keyword}&availability=${reqData.searchValue.availability}`,{
+      const { data } = await api.get(`api/food/search?name=${reqData.keyword}&isAvailable=${reqData.availability}`,{
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -72,6 +72,7 @@ export const searchMenuItem = ({reqData,jwt}) => {
       console.log("data ------------ ", data);
       dispatch({type:SEARCH_MENU_ITEM_SUCCESS,payload:data});
     } catch (error) {
+      console.log("catch error", error);
       dispatch({type:SEARCH_MENU_ITEM_FAILURE,payload:error});
     }
   };
