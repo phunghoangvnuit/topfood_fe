@@ -64,7 +64,7 @@ export const searchMenuItem = ({reqData,jwt}) => {
   return async (dispatch) => {
     dispatch({type: SEARCH_MENU_ITEM_REQUEST});
     try {
-      const { data } = await api.get(`api/food/search?name=${reqData.keyword}&isAvailable=${reqData.availability}`,{
+      const { data } = await api.get(`api/food/search?keyword=${reqData.keyword}&isAvailable=${reqData.availability}`,{
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -74,6 +74,24 @@ export const searchMenuItem = ({reqData,jwt}) => {
     } catch (error) {
       console.log("catch error", error);
       dispatch({type:SEARCH_MENU_ITEM_FAILURE,payload:error});
+    }
+  };
+};
+
+export const searchMenuItemByRestaurant = ({reqData,restaurantId,jwt}) => {
+  return async (dispatch) => {
+    dispatch({type: GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST});
+    try {
+      const { data } = await api.get(`api/food/restaurant/${restaurantId}/search?keyword=${reqData.keyword}&isAvailable=${reqData.availability}`,{
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      console.log("data ------------ ", data);
+      dispatch({type:GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS,payload:data});
+    } catch (error) {
+      console.log("catch error", error);
+      dispatch({type:GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE,payload:error});
     }
   };
 };

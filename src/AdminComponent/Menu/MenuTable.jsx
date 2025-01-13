@@ -39,7 +39,7 @@ export default function MenuTable() {
         foodCategory: "",
       })
     );
-  }, []);
+  }, [dispatch, jwt, restaurant.usersRestaurant.id]);//Demo []
 
   const handleDeleteFood = (foodId) => {
     dispatch(deleteFoodAction({ foodId, jwt }));
@@ -55,7 +55,7 @@ export default function MenuTable() {
           title={"Menu"}
           sx={{ pt: 2, alignItems: "center", color: "#ED1C24" }}
         />
-        <MenuFilter />
+        <MenuFilter restaurantId={restaurant.usersRestaurant.id}/>
         <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
           <Table
             sx={{ minWidth: 700, tableLayout: "fixed" }}

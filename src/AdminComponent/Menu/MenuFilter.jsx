@@ -4,7 +4,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { searchMenuItem } from "component/State/Menu/Action";
+import { searchMenuItemByRestaurant } from "component/State/Menu/Action";
 import { Field, Form, Formik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -20,15 +20,18 @@ const initialValues = {
   keyword: ""
 };
 
-const MenuFilter = () => {
+const MenuFilter = ({restaurantId}) => {
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSearch = (values) => {
     console.log("search values", values);
-    dispatch(searchMenuItem({ reqData: values, jwt }));
+    dispatch(searchMenuItemByRestaurant({ reqData: values, restaurantId, jwt }));
   };
+  React.useEffect(() => {
+    handleSearch(initialValues);
+  }, []);
 
   return (
     <div
