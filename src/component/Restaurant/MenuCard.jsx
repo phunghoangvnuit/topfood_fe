@@ -28,14 +28,14 @@ const MenuCard = ({ item }) => {
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const dispatch=useDispatch();
 
-  const handleCheckBoxChange = (itemName) => {
-    console.log("value", itemName);
-    if (selectedIngredients.includes(itemName)) {
+  const handleCheckBoxChange = (ingredientItem) => {
+    console.log("value", ingredientItem);
+    if (selectedIngredients.includes(ingredientItem)) {
       setSelectedIngredients(
-        selectedIngredients.filter((item) => item !== itemName)
+        selectedIngredients.filter((item) => item !== ingredientItem)
       );
     } else {
-      setSelectedIngredients([...selectedIngredients, itemName]);
+      setSelectedIngredients([...selectedIngredients, ingredientItem]);
     }    
   };
   const handleAddItemToCart = (e) => {
@@ -76,39 +76,40 @@ const MenuCard = ({ item }) => {
         </div>
       </AccordionSummary>
       <AccordionDetails sx={{marginTop: "-30px"}}>
-        <form onSubmit={handleAddItemToCart}>
-          <div className="flex gap-3 flex-wrap">
-            {Object.keys(categorizeIngredients(item.ingredients)).map(
-              (category) => (
-                <div>
-                  <p>{category}</p>
-                  <FormGroup>
-                    {categorizeIngredients(item.ingredients)[category].map(
-                      (item) => (
-                        <FormControlLabel
-                          key={item.id}
-                          control={
-                            <Checkbox
-                              onChange={() => handleCheckBoxChange(item.name)}
-                              sx={{color: "#000000"}}
-                            />
-                          }
-                          sx={{color: "#000000"}}
-                          label={item.name}
-                        />
-                      )
-                    )}
-                  </FormGroup>
-                </div>
-              )
-            )}
-          </div>
-          <div className="pt-5">
-            <Button variant="contained" disabled={false} type="submit">
-              {true ? "Add to Cart" : "Out of Stock"}
-            </Button>
-          </div>
-        </form>
+      <form onSubmit={handleAddItemToCart}>
+        <div className="flex gap-3 flex-wrap">
+          {item.ingredientCategories.map((category) => (
+            <div key={category.id}>
+              <p style={{color: "black", fontWeight: 600, marginTop: "10px"}}>{category.name}</p>
+              <FormGroup>
+                {category.ingredients.map((ingredient) => (
+                  <FormControlLabel
+                    key={ingredient.id}
+                    control={
+                      <Checkbox
+                        onChange={() => handleCheckBoxChange(ingredient)}
+                        sx={{ color: "#000000" }}
+                      />
+                    }
+                    sx={{ color: "#000000" }}
+                    label={`${ingredient.name} (+${ingredient.price})`}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+          ))}
+        </div>
+        <div className="pt-5">
+          <Button 
+            variant="contained" 
+            disabled={!item.available} 
+            type="submit"
+            style={{ backgroundColor: item.available ? "primary" : "#9E9E9E", color: "#fff" }}
+          >
+            {item.available ? "Add to Cart" : "Out of Stock"}
+          </Button>
+        </div>
+      </form>
       </AccordionDetails>
     </Accordion>
   );

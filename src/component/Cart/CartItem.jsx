@@ -53,8 +53,9 @@ export const CartItem = ({item}) => {
           <p style={{width:"100%", textAlign:"right"}}>{item.totalPrice}đ</p>
         </div>
       </div>
-      <div className="pt-3 space-x-2">
-        {item.ingredients.map((ingredient)=><Chip sx={{color: "#FFFFFF", backgroundColor: "#000000"}} label={ingredient}/>)}
+      <div className="pt-3 space-x-2" style={{textAlign: "left"}}>
+        <p style={{fontWeight: "600"}}>Add-ons:</p>
+        {item.ingredients.map((ingredient)=> <p style={{margin: 0, padding: 0}}>- {`${ingredient.name} (+${ingredient.price}đ)`}</p>)}
       </div>
     </div>
   );

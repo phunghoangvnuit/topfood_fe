@@ -34,7 +34,7 @@ const RestaurantDetails = () => {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
   const { auth, restaurant, menu } = useSelector((store) => store);
-  const [selectedCategory,setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const { id, city } = useParams();
 
@@ -43,7 +43,7 @@ const RestaurantDetails = () => {
     console.log(e.target.value, e.target.name);
   };
 
-  const handleFilterCategory = (e,value) => {
+  const handleFilterCategory = (e, value) => {
     setSelectedCategory(value);
     console.log(e.target.value, e.target.name, value);
   };
@@ -53,7 +53,6 @@ const RestaurantDetails = () => {
   useEffect(() => {
     dispatch(getRestaurantById({ jwt, restaurantId: id }));
     dispatch(getRestaurantsCategory({ jwt, restaurantId: id }));
-
   }, []);
 
   useEffect(() => {
@@ -61,20 +60,17 @@ const RestaurantDetails = () => {
       getMenuItemsByRestaurantId({
         jwt,
         restaurantId: id,
-        vegetarian: foodType==="vegetarian",
-        non_vegetarian: foodType==="non-vegetarian",
-        seasonal: foodType==="seasonal",
+        vegetarian: foodType === "vegetarian",
+        non_vegetarian: foodType === "non-vegetarian",
+        seasonal: foodType === "seasonal",
         foodCategory: selectedCategory,
       })
     );
-  },[selectedCategory, foodType])
+  }, [selectedCategory, foodType]);
 
   return (
     <div className="px-5 lg:px-20">
       <section>
-        <h3 className="text-gray-500 py-2 mt-10">
-          Banh Mi Viet Nam - 8th, Ton That Thuyet, Nam Tu Liem, Hanoi
-        </h3>
         <div>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -94,14 +90,17 @@ const RestaurantDetails = () => {
             <Grid item xs={12} lg={6}>
               <img
                 className="w-full h-[40vh] object-cover"
-                src="https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src={restaurant.restaurant?.images[2]}
                 alt=""
               />
             </Grid>
           </Grid>
         </div>
         <div className="pt-3 pb-5">
-          <h1 className="text-4xl" style={{color: "#ED1C24", fontWeight: "600"}}>
+          <h1
+            className="text-4xl"
+            style={{ color: "#ED1C24", fontWeight: "600" }}
+          >
             {restaurant.restaurant?.name}
           </h1>
           <p className="text-black mt-1">
@@ -111,7 +110,13 @@ const RestaurantDetails = () => {
           <div className="space-y-3 mt-3">
             <p className="text-black flex items-center gap-3">
               <LocationOnIcon />
-              <span>8th, Ton That Thuyet, Nam Tu Liem, Hanoi</span>
+              <span>
+                {restaurant.restaurant?.address.detailsAddress},{" "}
+                {restaurant.restaurant?.address.street},{" "}
+                {restaurant.restaurant?.address.ward},{" "}
+                {restaurant.restaurant?.address.district},{" "}
+                {restaurant.restaurant?.address.city}
+              </span>
             </p>
             <p className="text-black flex items-center gap-3">
               <CalendarTodayIcon />
@@ -125,7 +130,14 @@ const RestaurantDetails = () => {
         <div className="space-y-10 lg:w-[20%] filter">
           <div className="box space-y-5 lg:sticky top-28">
             <div>
-              <Typography variant="h5" sx={{ paddingBottom: "1rem", color: "#000000", fontWeight: "500" }}>
+              <Typography
+                variant="h5"
+                sx={{
+                  paddingBottom: "1rem",
+                  color: "#000000",
+                  fontWeight: "500",
+                }}
+              >
                 Food Type
               </Typography>
 
@@ -134,13 +146,13 @@ const RestaurantDetails = () => {
                   onChange={handleFilter}
                   name="food_type"
                   value={foodType}
-                  sx={{color: "#000000"}}
+                  sx={{ color: "#000000" }}
                 >
                   {foodTypes.map((item) => (
                     <FormControlLabel
                       key={item.value}
                       value={item.value}
-                      control={<Radio sx={{color: "#000000"}}/>}
+                      control={<Radio sx={{ color: "#000000" }} />}
                       label={item.label}
                     />
                   ))}
@@ -149,7 +161,14 @@ const RestaurantDetails = () => {
             </div>
             <Divider />
             <div>
-              <Typography variant="h5" sx={{ paddingBottom: "1rem", color: "#000000", fontWeight: "500"}}>
+              <Typography
+                variant="h5"
+                sx={{
+                  paddingBottom: "1rem",
+                  color: "#000000",
+                  fontWeight: "500",
+                }}
+              >
                 Food Category
               </Typography>
 
@@ -158,13 +177,13 @@ const RestaurantDetails = () => {
                   onChange={handleFilterCategory}
                   name="food_category"
                   value={selectedCategory}
-                  sx={{color: "#000000"}}
+                  sx={{ color: "#000000" }}
                 >
                   {restaurant.categories.map((item) => (
                     <FormControlLabel
                       key={item}
                       value={item.name}
-                      control={<Radio sx={{color: "#000000"}}/>}
+                      control={<Radio sx={{ color: "#000000" }} />}
                       label={item.name}
                     />
                   ))}
