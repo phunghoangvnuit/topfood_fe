@@ -6,19 +6,19 @@ export const calculateDeliveryFee = async (userAddress, restaurantAddress) => {
   if (route) {return route.distance * 5000};
 };
 
-// METHOD: Get delivery time (for example: delivery at 10:00 AM)
+// METHOD: Get delivery duration (for example: delivery in 15 minutes)
 export const estimateDuration = async (userAddress, restaurantAddress) => {
   const route = await calculateRoute(userAddress, restaurantAddress);
   if (route) { return route.duration}
 }
 
-// METHOD: Get delivery duration (for example: delivery in 15 minutes)
+// METHOD: Get delivery time (for example: delivery at 10:00 AM)
 export const estimateTime = async (userAddress, restaurantAddress) => {
   const route = await calculateRoute(userAddress, restaurantAddress);
   if (route) {
     const currentTime = new Date();
     const estimatedTime = new Date(currentTime.getTime() + route.duration * 60000); // Convert minutes to milliseconds
-    return `${estimatedTime.getHours().toString().padStart(2, '0')}:${estimatedTime.getMinutes().toString().padStart(2, '0')}`
+    return estimatedTime;
   }
 }
 

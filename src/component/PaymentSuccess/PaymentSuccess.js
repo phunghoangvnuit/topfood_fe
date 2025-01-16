@@ -5,15 +5,18 @@ import { Button, Card } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { api, API_URL } from "../config/api";
 import axios from "axios";
+import { updatePaymentStatus } from "component/State/Restaurant Order/Action";
+import { useDispatch } from "react-redux";
 
 export const PaymentSuccess = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const jwt = localStorage.getItem("jwt");
+  const dispatch = useDispatch();
   // Send Order Email Confirmation
   useEffect(() => {
     const sendEmail = async () => {
       try {
-        const jwt = localStorage.getItem("jwt");
         await axios.get(`${API_URL}/api/send-email/${id}`, {
           headers: {
             Authorization: `Bearer ${jwt}`
@@ -23,9 +26,10 @@ export const PaymentSuccess = () => {
         console.error("Error sending email:", error);
       }
     };
-
+    dispatch(updatePaymentStatus({ orderId: id, jwt }));
     sendEmail();
-  }, [id]);
+  }, [id, dispatch, jwt]);
+
   return (
     <div className="min-h-screen px-5">
       <div className="flex flex-col items-center justify-center h-[90vh]">

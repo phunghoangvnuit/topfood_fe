@@ -7,6 +7,9 @@ import {
   GET_RESTAURANTS_ORDER_REQUEST,
   GET_RESTAURANTS_ORDER_SUCCESS,
   GET_RESTAURANTS_ORDER_FAILURE,
+  UPDATE_PAYMENT_STATUS_REQUEST,
+  UPDATE_PAYMENT_STATUS_SUCCESS,
+  UPDATE_PAYMENT_STATUS_FAILURE
 } from "./ActionTypes.js";
 import { api } from "../../config/api.js";
 
@@ -34,6 +37,34 @@ export const updateOrderStatus = ({ orderId, jwt }) => {
     } catch (error) {
       console.log("catch error", error);
       dispatch({ type: UPDATE_ORDER_STATUS_FAILURE, error });
+    }
+  };
+};
+
+export const updatePaymentStatus = ({ orderId, jwt }) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: UPDATE_PAYMENT_STATUS_REQUEST });
+
+      const response = await api.put(
+        `api/order/${orderId}/payment`, {}, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      const updatedOrder = response.data;
+
+      console.log("updated order", updatedOrder);
+
+      dispatch({
+        type: UPDATE_PAYMENT_STATUS_SUCCESS,
+        payload: updatedOrder,
+      });
+    } catch (error) {
+      console.log("catch error", error);
+      dispatch({ type: UPDATE_PAYMENT_STATUS_FAILURE, error });
     }
   };
 };
