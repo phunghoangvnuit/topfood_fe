@@ -8,6 +8,9 @@ import {
   GET_USERS_ORDERS_SUCCESS,
   GET_USERS_NOTIFICATION_FAILURE,
   GET_USERS_NOTIFICATION_SUCCESS,
+  GET_ORDER_BY_ID_REQUEST,
+  GET_ORDER_BY_ID_SUCCESS,
+  GET_ORDER_BY_ID_FAILURE,
 } from "./ActionTypes";
 
 export const createOrder = (reqData) => {
@@ -65,6 +68,23 @@ export const getUsersOrders = (jwt) => {
       dispatch({ type: GET_USERS_ORDERS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: GET_USERS_ORDERS_FAILURE, payload: error });
+    }
+  };
+};
+
+export const getOrderById = (id, jwt) => {
+  return async (dispatch) => {
+    dispatch({ type: GET_ORDER_BY_ID_REQUEST });
+    try {
+      const { data } = await api.get(`/api/order/${id}`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      console.log("order by id", data);
+      dispatch({ type: GET_ORDER_BY_ID_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: GET_ORDER_BY_ID_FAILURE, payload: error });
     }
   };
 };

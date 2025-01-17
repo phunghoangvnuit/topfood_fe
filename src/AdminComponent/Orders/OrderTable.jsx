@@ -29,9 +29,11 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { formatDate } from "AdminComponent/util/dateUltis";
 import { formatMoney } from "AdminComponent/util/moneyUltis";
 import OrderFilter from "./OrderFilter";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function OrderTable() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const jwt = localStorage.getItem("jwt");
   const { restaurant, restaurantOrder } = useSelector((store) => store);
 
@@ -148,7 +150,7 @@ export default function OrderTable() {
                   <TableCell align="center">
                     <IconButton
                       color="warning"
-                      onClick={() => alert(`Viewing`)}
+                      onClick={() => navigate(`/admin/restaurants/order-details/${item.id}`)}
                       sx={{
                         color: "#fff",
                         backgroundColor: "#FFC300",

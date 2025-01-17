@@ -16,6 +16,7 @@ import {
 } from "component/State/Restaurant/Action";
 import { getMenuItemsByRestaurantId } from "component/State/Menu/Action";
 import { fetchRestaurantsOrder } from "component/State/Restaurant Order/Action";
+import OrderDetails from "AdminComponent/Orders/OrderDetails";
 
 export const Admin = () => {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ export const Admin = () => {
             <Route path="/event" element={<Events />} />
             <Route path="/details" element={<RestaurantDetails />} />
             <Route path="/add-menu" element={<CreateMenuForm />} />
+            <Route path="/order-details/:id" element={<OrderDetails/>}/>
           </Routes>
         </div>
       </div>
