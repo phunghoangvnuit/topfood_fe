@@ -9,12 +9,17 @@ import {
   UPDATE_PAYMENT_STATUS_SUCCESS,
   UPDATE_PAYMENT_STATUS_REQUEST,
   UPDATE_PAYMENT_STATUS_FAILURE,
+  SEARCH_ORDER_REQUEST,
+  SEARCH_ORDER_SUCCESS,
+  SEARCH_ORDER_FAILURE
 } from "./ActionTypes.js"
 
 const initialState = {
   loading: false,
   error: null,
-  orders: []
+  orders: [],
+  search: [],
+  message: null
 };
 
 const restaurantsOrderReducer = (state = initialState, action) => {
@@ -37,6 +42,28 @@ const restaurantsOrderReducer = (state = initialState, action) => {
     case UPDATE_PAYMENT_STATUS_FAILURE:
     case UPDATE_ORDER_STATUS_FAILURE:
       return {...state,loading:false,error:action.error};
+
+    case SEARCH_ORDER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        message: null
+      }
+    case SEARCH_ORDER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        search: action.payload
+      }
+    case SEARCH_ORDER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        message: null
+      }
+
     default: 
       return state;
   }

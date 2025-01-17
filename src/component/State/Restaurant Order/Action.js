@@ -9,7 +9,10 @@ import {
   GET_RESTAURANTS_ORDER_FAILURE,
   UPDATE_PAYMENT_STATUS_REQUEST,
   UPDATE_PAYMENT_STATUS_SUCCESS,
-  UPDATE_PAYMENT_STATUS_FAILURE
+  UPDATE_PAYMENT_STATUS_FAILURE,
+  SEARCH_ORDER_REQUEST,
+  SEARCH_ORDER_SUCCESS,
+  SEARCH_ORDER_FAILURE
 } from "./ActionTypes.js";
 import { api } from "../../config/api.js";
 
@@ -65,6 +68,24 @@ export const updatePaymentStatus = ({ orderId, jwt }) => {
     } catch (error) {
       console.log("catch error", error);
       dispatch({ type: UPDATE_PAYMENT_STATUS_FAILURE, error });
+    }
+  };
+};
+
+export const searchRestaurantOrder = ({reqData,jwt}) => {
+  return async (dispatch) => {
+    dispatch({type: SEARCH_ORDER_REQUEST});
+    try {
+      const { data } = await api.get(`api/admin/orders/search?keyword=${reqData.keyword}&orderStatus=${reqData.orderStatus}`,{
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      console.log("data ------------ ", data);
+      dispatch({type:SEARCH_ORDER_SUCCESS,payload:data});
+    } catch (error) {
+      console.log("catch error", error);
+      dispatch({type:SEARCH_ORDER_FAILURE,payload:error});
     }
   };
 };

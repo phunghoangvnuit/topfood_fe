@@ -17,7 +17,7 @@ export const Orders = () => {
 
   return (
     <div className="px-2">
-      <Card className="p-5">
+      {/* <Card className="p-5">
         <Typography sx={{ paddingBottom: "1rem", color:"#ED1C24" }} variant="h5">
           Order Status
         </Typography>
@@ -37,7 +37,7 @@ export const Orders = () => {
             />)}
           </RadioGroup>
         </FormControl>
-      </Card>
+      </Card> */}
       <OrderTable/>
     </div>
   );
