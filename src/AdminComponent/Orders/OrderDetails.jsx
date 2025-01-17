@@ -7,9 +7,11 @@ import PrintIcon from "@mui/icons-material/Print";
 import { formatMoney } from "AdminComponent/util/moneyUltis";
 import { formatDate } from "AdminComponent/util/dateUltis";
 import { OrderItem } from "./OrderItem";
+import { updateOrderStatus } from "component/State/Restaurant Order/Action";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { order: orderDetails } = useSelector((store) => store.order);
   const { id } = useParams();
   const jwt = localStorage.getItem("jwt");
@@ -21,6 +23,11 @@ const OrderDetails = () => {
   if (!orderDetails) {
     return <div>Loading...</div>;
   }
+
+  const handleUpdateOrderStatus = (orderId) => {
+    dispatch(updateOrderStatus({ orderId, jwt }));
+    navigate('/admin/restaurants/orders');
+  };
 
   return (
     <Box>
@@ -59,6 +66,7 @@ const OrderDetails = () => {
                   <PrintIcon sx={{ width: "18px" }} />
                 </button>
                 <button
+                onClick={() => handleUpdateOrderStatus(orderDetails.id)}
                   style={{
                     fontSize: "14px",
                     width: "100px",
