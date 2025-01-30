@@ -1,9 +1,4 @@
-import {
-  InputAdornment,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { InputAdornment, MenuItem, Select, TextField } from "@mui/material";
 import { searchMenuItemByRestaurant } from "component/State/Menu/Action";
 import { Field, Form, Formik } from "formik";
 import React from "react";
@@ -11,23 +6,26 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SearchIcon from "@mui/icons-material/Search";
-import {IconButton, Button} from "@mui/material";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import CategoryIcon from '@mui/icons-material/Category';
+import { IconButton, Button } from "@mui/material";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import CategoryIcon from "@mui/icons-material/Category";
+import LayersIcon from '@mui/icons-material/Layers';
 
 const initialValues = {
   availability: "",
-  keyword: ""
+  keyword: "",
 };
 
-const MenuFilter = ({restaurantId}) => {
+const MenuFilter = ({ restaurantId }) => {
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSearch = (values) => {
     console.log("search values", values);
-    dispatch(searchMenuItemByRestaurant({ reqData: values, restaurantId, jwt }));
+    dispatch(
+      searchMenuItemByRestaurant({ reqData: values, restaurantId, jwt })
+    );
   };
   React.useEffect(() => {
     handleSearch(initialValues);
@@ -40,10 +38,10 @@ const MenuFilter = ({restaurantId}) => {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "16px"
+        padding: "16px",
       }}
     >
-      <div>
+      <div style={{ marginTop: "16px", marginBottom: "8px" }}>
         <IconButton
           onClick={() => navigate("/admin/restaurants/add-menu")}
           aria-label="settings"
@@ -64,7 +62,8 @@ const MenuFilter = ({restaurantId}) => {
             },
           }}
         >
-          <AddCircleOutlineIcon sx={{ width: "18px", marginRight: "3px" }} /> Create
+          <AddCircleOutlineIcon sx={{ width: "18px", marginRight: "3px" }} />{" "}
+          Create
         </IconButton>
         <IconButton
           onClick={() => navigate("/admin/restaurants/category")}
@@ -79,14 +78,38 @@ const MenuFilter = ({restaurantId}) => {
             width: "150px",
             height: "41px",
             cursor: "pointer",
+            marginRight: "8px",
             transition: "all 0.3s ease",
             "&:hover": {
               backgroundColor: "#003B77",
             },
           }}
         >
-          <CategoryIcon sx={{ width: "18px", marginRight: "3px" }} /> View Category
-        </IconButton>        
+          <CategoryIcon sx={{ width: "18px", marginRight: "3px" }} /> View
+          Category
+        </IconButton>
+        <IconButton
+          onClick={() => navigate("/admin/restaurants/ingredients")}
+          aria-label="settings"
+          sx={{
+            backgroundColor: "#FFC300",
+            color: "#ffffff",
+            fontSize: "14px",
+            fontWeight: "500",
+            border: "1px solid",
+            borderRadius: "4px",
+            width: "150px",
+            height: "41px",
+            cursor: "pointer",
+            transition: "all 0.3s ease",
+            "&:hover": {
+              backgroundColor: "#FFB300",
+            },
+          }}
+        >
+          <LayersIcon sx={{ width: "18px", marginRight: "3px" }} /> View
+          Add-ons
+        </IconButton>
       </div>
       <Formik onSubmit={handleSearch} initialValues={initialValues}>
         <Form>
@@ -128,7 +151,7 @@ const MenuFilter = ({restaurantId}) => {
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                 borderColor: "#9E9E9E",
-                borderWidth: "1px"
+                borderWidth: "1px",
               },
               "& .MuiSelect-select": {
                 color: "#000000",
@@ -210,7 +233,7 @@ const MenuFilter = ({restaurantId}) => {
                 },
                 "&.Mui-focused fieldset": {
                   borderColor: "#9E9E9E",
-                  borderWidth: "1px"
+                  borderWidth: "1px",
                 },
               },
               "& input:-webkit-autofill": {
