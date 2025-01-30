@@ -132,7 +132,7 @@ export default function MenuTable() {
                     {item.foodCategory.name}
                   </TableCell>
                   <TableCell sx={{ color: "#000000" }} align="center">
-                    {item.price}
+                    {item.discountedPrice}
                   </TableCell>
                   <TableCell sx={{ color: "#000000" }} align="center">
                     {item.price}
