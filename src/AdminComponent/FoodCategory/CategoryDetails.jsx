@@ -37,7 +37,7 @@ const CategoryDetails = ({ selectedCategory, menuItems }) => {
   <Box>
       <Card className="mt-1" sx={{ boxShadow: "none" }}>
         <CardHeader
-          title={`Category \"${selectedCategory}\"`}
+          title={selectedCategory ? `Foods in "${selectedCategory}"` : "All Foods"}
           sx={{ pt: 2, alignItems: "center", color: "#ED1C24" }}
         />
         <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
@@ -58,6 +58,12 @@ const CategoryDetails = ({ selectedCategory, menuItems }) => {
                   align="center"
                 >
                   Title
+                </TableCell>
+                <TableCell
+                  sx={{ color: "#000000", width: "10%" }}
+                  align="center"
+                >
+                  Discounted Price
                 </TableCell>
                 <TableCell
                   sx={{ color: "#000000", width: "10%" }}
@@ -99,6 +105,9 @@ const CategoryDetails = ({ selectedCategory, menuItems }) => {
                   </TableCell>
                   <TableCell sx={{ color: "#000000" }} align="center">
                     {item.name}
+                  </TableCell>
+                  <TableCell sx={{ color: "#000000" }} align="center">
+                    {item.discountedPrice}
                   </TableCell>
                   <TableCell sx={{ color: "#000000" }} align="center">
                     {item.price}
