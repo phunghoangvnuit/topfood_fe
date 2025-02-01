@@ -19,67 +19,143 @@ import { Delete } from "@mui/icons-material";
 import CreateIngredientCategoryForm from "./CreateIngredientCategoryForm";
 import { useDispatch, useSelector } from "react-redux";
 import { getIngredientCategory } from "component/State/Ingredients/Action";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 const orders = [1, 1, 1, 1, 1, 1, 1];
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
+  bgcolor: "background.paper",
   // border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
 
-
-export default function IngredientCategoryTable() {
+export default function IngredientCategoryTable({ onSelectCategory }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
-  const {restaurant,ingredients} = useSelector(store=>store);
+  const { restaurant, ingredients } = useSelector((store) => store);
   const jwt = localStorage.getItem("jwt");
 
-
-  useEffect(()=>{
-    dispatch(getIngredientCategory({id:restaurant.usersRestaurant.id,jwt}));
-
-  },[])
+  useEffect(() => {
+    dispatch(getIngredientCategory({ id: restaurant.usersRestaurant.id, jwt }));
+  }, []);
   return (
     <Box>
-      <Card className="mt-1">
+      <Card className="mt-1" sx={{ boxShadow: "none" }}>
         <CardHeader
           action={
-            <IconButton onClick={handleOpen} aria-label="settings">
-              <CreateIcon sx={{color:"#ED1C24"}}/>
-            </IconButton>
+          <IconButton
+            onClick={handleOpen}
+            aria-label="settings"
+            sx={{
+              color: "#227F3E",
+              fontSize: "14px",
+              fontWeight: "500",
+              border: "1px solid",
+              borderRadius: "4px",
+              width: "80px",
+              height: "40px",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              marginRight: "8px",
+              "&:hover": {
+                backgroundColor: "green",
+                color: "#fff",
+              },
+            }}
+          >
+            <AddCircleOutlineIcon sx={{ width: "18px", marginRight: "3px" }} />{" "}
+            Create
+          </IconButton>
           }
-          title={"Ingredient Category"}
-          sx={{ pt: 2, alignItems: "center", color:"#ED1C24" }}
+          title={"Add-on Categories"}
+          sx={{ pt: 2, alignItems: "center", color: "#ED1C24" }}
         />
 
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell sx={{color:"#000000"}} align="left">Id</TableCell>
-                <TableCell sx={{color:"#000000"}} align="left">Name</TableCell>
-
+                <TableCell sx={{ color: "#000000" }} align="center">
+                  Name
+                </TableCell>
+                <TableCell sx={{ color: "#000000" }} align="center">
+                  Actions
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {ingredients.category.map((item) => (
                 <TableRow
                   key={item.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 }, height: "73px" }}
                 >
-                  <TableCell component="th" scope="row" sx={{color:"#000000"}}>
-                    {item.id}
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    sx={{ color: "#000000" }}
+                    align="center"
+                  >
+                    {item.name}
                   </TableCell>
-                  <TableCell align="left" sx={{color:"#000000"}}>{item.name}</TableCell>
-
-
+                  <TableCell align="center" sx={{ width: "40%" }}>
+                    <IconButton
+                      color="warning"
+                      onClick={() => onSelectCategory({ id: item.id, name: item.name })}
+                      sx={{
+                        color: "#fff",
+                        backgroundColor: "#FFC300",
+                        borderRadius: "3px",
+                        padding: "5px",
+                        marginRight: "5px",
+                        "&:hover": {
+                          backgroundColor: "#FFB300",
+                        },
+                      }}
+                    >
+                      <VisibilityIcon />
+                    </IconButton>
+                    <IconButton
+                      color="primary"
+                      onClick={() => alert(`Editing`)}
+                      sx={{
+                        color: "#fff",
+                        backgroundColor: "#004B87",
+                        borderRadius: "3px",
+                        padding: "5px",
+                        marginRight: "5px",
+                        "&:hover": {
+                          backgroundColor: "#003B77",
+                        },
+                      }}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      color="primary"
+                      onClick={() => alert(`Deleting`)}
+                      sx={{
+                        color: "#fff",
+                        backgroundColor: "#ED1C24",
+                        borderRadius: "3px",
+                        padding: "5px",
+                        marginRight: "5px",
+                        "&:hover": {
+                          backgroundColor: "#DC0C14",
+                        },
+                      }}
+                    >
+                      <DeleteForeverIcon />
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -94,7 +170,7 @@ export default function IngredientCategoryTable() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <CreateIngredientCategoryForm/>
+          <CreateIngredientCategoryForm />
         </Box>
       </Modal>
     </Box>

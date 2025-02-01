@@ -15,8 +15,6 @@ const menu = [
   { title: "Dashboard", icon: <Dashboard />, path: "/" },
   { title: "Orders", icon: <ShoppingBag />, path: "/orders" },
   { title: "Menu", icon: <ShopTwoIcon />, path: "/menu" },
-  { title: "Ingredients", icon: <FastfoodIcon />, path: "/ingredients" },
-  { title: "Coupons", icon: <EventIcon />, path: "/event" },
   { title: "Details", icon: <AdminPanelSettingsIcon />, path: "/details" },
   { title: "Logout", icon: <LogoutIcon />, path: "/" },
 ];

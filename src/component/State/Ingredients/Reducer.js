@@ -4,6 +4,9 @@ import {
   GET_INGREDIENTS,
   GET_INGREDIENT_CATEGORY_SUCCESS,
   UPDATE_STOCK,
+  GET_INGREDIENTS_BY_CATEGORY_REQUEST,
+  GET_INGREDIENTS_BY_CATEGORY_SUCCESS,
+  GET_INGREDIENTS_BY_CATEGORY_FAILURE
 } from "./ActionTypes.js"
 
 const initialState = {
@@ -15,6 +18,7 @@ const initialState = {
 export const ingredientReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_INGREDIENTS:
+    case GET_INGREDIENTS_BY_CATEGORY_SUCCESS:
       return {
         ...state,
         ingredients: action.payload,

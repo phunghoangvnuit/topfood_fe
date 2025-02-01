@@ -114,7 +114,7 @@ const CreateIngredientForm = () => {
               }}
             >
               {ingredients.category.map((item) => (
-                <MenuItem value={item.id}>{item.name}</MenuItem>
+                <MenuItem sx={{color: "#000000"}} value={item.id}>{item.name}</MenuItem>
               ))}
             </Select>
           </FormControl>

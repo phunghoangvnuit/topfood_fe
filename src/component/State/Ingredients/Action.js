@@ -7,6 +7,9 @@ import {
   GET_INGREDIENTS,
   GET_INGREDIENT_CATEGORY_FAILURE,
   GET_INGREDIENT_CATEGORY_SUCCESS,
+  GET_INGREDIENTS_CATEGORY_SUCCESS,
+  GET_INGREDIENTS_BY_CATEGORY_SUCCESS,
+  GET_INGREDIENTS_BY_CATEGORY_FAILURE,
   UPDATE_STOCK,
 } from "./ActionTypes";
 import { API_URL, api } from "../../config/api";
@@ -25,6 +28,29 @@ export const getIngredientsOfRestaurant = ({ id, jwt }) => {
       console.log("get all ingredients", response.data);
       dispatch({
         type: GET_INGREDIENTS,
+        payload: response.data, 
+      });
+    } catch (error) {
+      console.log("error", error);
+      // Handle error, dispatch an error action, etc
+    }
+  };
+};
+
+export const getIngredientsbyCategory = ({id, jwt}) => {
+  return async (dispatch) => {
+    try {
+      const response = await api.get(
+        `/api/ingredients/category/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      console.log("get ingredients by category", response.data);
+      dispatch({
+        type: GET_INGREDIENTS_BY_CATEGORY_SUCCESS,
         payload: response.data, 
       });
     } catch (error) {
