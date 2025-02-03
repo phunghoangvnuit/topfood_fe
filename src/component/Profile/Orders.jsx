@@ -196,7 +196,7 @@ export const Orders = () => {
                     <IconButton
                       color="warning"
                       onClick={() =>
-                        navigate(`/admin/restaurants/order-details/${order.id}`)
+                        navigate(`/order-details/${order.id}`)
                       }
                       sx={{
                         color: "#fff",
