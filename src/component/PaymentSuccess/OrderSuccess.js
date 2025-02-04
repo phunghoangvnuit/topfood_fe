@@ -9,7 +9,7 @@ import { updatePaymentStatus } from "component/State/Restaurant Order/Action";
 import { useDispatch } from "react-redux";
 import { clearCartAction } from "component/State/Cart/Action";
 
-export const PaymentSuccess = () => {
+export const OrderSuccess = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const jwt = localStorage.getItem("jwt");
