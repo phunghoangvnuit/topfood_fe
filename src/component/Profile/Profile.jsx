@@ -6,6 +6,7 @@ import { Address } from "./Address";
 import { Favorites } from "./Favorites";
 import { Events } from "./Events";
 import { Orders } from "./Orders";
+import OrderDetailsCustomer from "component/Orders/OrderDetailsCustomer";
 
 function Profile() {
   const [openSideBar, setOpenSideBar] = useState(false);
@@ -21,6 +22,7 @@ function Profile() {
           <Route path="/address" element={<Address />} />
           <Route path="/favorites" element={<Favorites/>}/>
           <Route path="/events" element={<Events/>}/>
+          <Route path="/order-details/:id" element={<OrderDetailsCustomer/>} />
         </Routes>
       </div>
     </div>

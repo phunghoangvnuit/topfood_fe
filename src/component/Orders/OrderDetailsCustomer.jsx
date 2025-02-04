@@ -37,19 +37,31 @@ const OrderDetailsCustomer = () => {
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <div>
                 <p style={{ fontSize: "20px" }}>{`Order Details: #${id}`}</p>
-                <button
-                  style={{
-                    fontSize: "14px",
-                    width: "100px",
-                    height: "30px",
-                    borderRadius: "3px",
-                    backgroundColor: "#ED1C24",
-                    color: "#FFF",
-                    cursor: "default",
-                  }}
-                >
-                  {orderDetails.orderStatus}
-                </button>
+                {orderDetails.orderStatus === "PENDING" && (
+                  <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#ED1C24", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                    PENDING
+                  </button>
+                )}
+                {orderDetails.orderStatus === "PREPARING" && (
+                  <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#FFC300", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                    PREPARING
+                  </button>
+                )}
+                {orderDetails.orderStatus === "DELIVERING" && (
+                  <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#004B87", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                    DELIVERING
+                  </button>
+                )}
+                {orderDetails.orderStatus === "COMPLETED" && (
+                  <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#227F3E", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                    COMPLETED
+                  </button>
+                )}
+                {orderDetails.orderStatus === "CANCEL" && (
+                  <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#D9D9D9", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                    CANCEL
+                  </button>
+                )}
               </div>
               <div style={{ display: "flex", gap: "10px" }}>
                 <button

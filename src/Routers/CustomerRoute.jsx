@@ -20,7 +20,7 @@ export const CustomerRoute = () => {
         <Route path="/cart" element={<Cart/>} />
         <Route path="/my-profile/*" element={<Profile/>} />
         <Route path="/payment/success/:id" element={<PaymentSuccess/>} />
-        <Route path="/order-details/:id" element={<OrderDetailsCustomer/>} />
+        {/* <Route path="/order-details/:id" element={<OrderDetailsCustomer/>} /> */}
       </Routes>
       <Auth/>
     </div>
