@@ -1,4 +1,4 @@
-import { Box, Card, CardHeader } from "@mui/material";
+import { Box, Card, CardHeader, Modal } from "@mui/material";
 import { getOrderById } from "component/State/Order/Action";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,8 +8,23 @@ import { formatMoney } from "AdminComponent/util/moneyUltis";
 import { formatDate } from "AdminComponent/util/dateUltis";
 import { OrderItem } from "AdminComponent/Orders/OrderItem";
 import { updateOrderStatus } from "component/State/Restaurant Order/Action";
+import CancelOrderUserForm from "./CancelOrderUserForm";
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 800,
+  bgcolor: "background.paper",
+  // border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const OrderDetailsCustomer = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { order: orderDetails } = useSelector((store) => store.order);
@@ -58,7 +73,7 @@ const OrderDetailsCustomer = () => {
                   </button>
                 )}
                 {orderDetails.orderStatus === "CANCEL" && (
-                  <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#D9D9D9", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                  <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#9E9E9E", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
                     CANCEL
                   </button>
                 )}
@@ -78,7 +93,8 @@ const OrderDetailsCustomer = () => {
                   <PrintIcon sx={{ width: "18px" }} />
                 </button>
                 <button
-                onClick={() => handleUpdateOrderStatus(orderDetails.id)}
+                // onClick={() => handleUpdateOrderStatus(orderDetails.id)}
+                  onClick={handleOpen}
                   style={{
                     fontSize: "14px",
                     width: "100px",
@@ -223,8 +239,25 @@ const OrderDetailsCustomer = () => {
               đ
             </span>
           </p>
+          <p>
+            Note:{" "}
+            <span style={{ fontWeight: "400" }}>
+              {orderDetails.note}
+            </span>
+          </p>
         </div>
       </div>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <CancelOrderUserForm orderId={orderDetails.id} handleClose={handleClose}/>
+        </Box>
+      </Modal>
     </Box>
   );
 };

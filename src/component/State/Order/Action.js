@@ -11,6 +11,9 @@ import {
   GET_ORDER_BY_ID_REQUEST,
   GET_ORDER_BY_ID_SUCCESS,
   GET_ORDER_BY_ID_FAILURE,
+  CANCEL_ORDER_BY_USER_REQUEST,
+  CANCEL_ORDER_BY_USER_SUCCESS,
+  CANCEL_ORDER_BY_USER_FAILURE,
 } from "./ActionTypes";
 
 export const createOrder = (reqData) => {
@@ -30,6 +33,34 @@ export const createOrder = (reqData) => {
     } catch (error) {
       console.log("error", error);
       dispatch({ type: CREATE_ORDER_FAILURE, payload: error });
+    }
+  };
+};
+
+export const cancelOrderByUser = ({ reqData, jwt }) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: CANCEL_ORDER_BY_USER_REQUEST });
+
+      const response = await api.put(
+        `/order/${reqData.id}/cancel`, reqData, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      const canceledOrder = response.data;
+
+      console.log("cancel order", canceledOrder);
+
+      dispatch({
+        type: CANCEL_ORDER_BY_USER_SUCCESS,
+        payload: canceledOrder,
+      });
+    } catch (error) {
+      console.log("catch error", error);
+      dispatch({ type: CANCEL_ORDER_BY_USER_FAILURE, error });
     }
   };
 };
