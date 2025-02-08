@@ -37,13 +37,15 @@ export const createOrder = (reqData) => {
   };
 };
 
-export const cancelOrderByUser = ({ reqData, jwt }) => {
+export const cancelOrderByUser = (reqData,jwt) => {
   return async (dispatch) => {
     try {
       dispatch({ type: CANCEL_ORDER_BY_USER_REQUEST });
 
       const response = await api.put(
-        `/order/${reqData.id}/cancel`, reqData, {
+        `/api/order/cancel`,
+        reqData,
+        {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },

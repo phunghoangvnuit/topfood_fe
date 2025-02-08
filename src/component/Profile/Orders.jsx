@@ -136,60 +136,34 @@ export const Orders = () => {
                     sx={{ color: "#000000", textAlign: "center" }}
                   >
                     {order.orderStatus === "PENDING" && (
-                      <span
-                        style={{
-                          width: "100px",
-                          backgroundColor: "#ED1C24",
-                          color: "#FFF",
-                          display: "inline-block",
-                          padding: "5px",
-                          borderRadius: "3px",
-                        }}
-                      >
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#ED1C24", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
                         PENDING
-                      </span>
+                      </button>
                     )}
                     {order.orderStatus === "PREPARING" && (
-                      <span
-                        style={{
-                          width: "100px",
-                          backgroundColor: "#FFC300",
-                          color: "#FFF",
-                          display: "inline-block",
-                          padding: "5px",
-                          borderRadius: "3px",
-                        }}
-                      >
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#FFC300", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
                         PREPARING
-                      </span>
+                      </button>
                     )}
                     {order.orderStatus === "DELIVERING" && (
-                      <span
-                        style={{
-                          width: "100px",
-                          backgroundColor: "#004B87",
-                          color: "#FFF",
-                          display: "inline-block",
-                          padding: "5px",
-                          borderRadius: "3px",
-                        }}
-                      >
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#004B87", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
                         DELIVERING
-                      </span>
+                      </button>
                     )}
                     {order.orderStatus === "COMPLETED" && (
-                      <span
-                        style={{
-                          width: "100px",
-                          backgroundColor: "#227F3E",
-                          color: "#FFF",
-                          display: "inline-block",
-                          padding: "5px",
-                          borderRadius: "3px",
-                        }}
-                      >
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#227F3E", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
                         COMPLETED
-                      </span>
+                      </button>
+                    )}
+                    {order.orderStatus === "REFUNDING" && (
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#2596BE", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                        REFUNDING
+                      </button>
+                    )}
+                    {order.orderStatus === "CANCEL" && (
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#9E9E9E", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                        CANCEL
+                      </button>
                     )}
                   </TableCell>
                   <TableCell align="center">
