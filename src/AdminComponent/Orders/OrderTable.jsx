@@ -127,24 +127,34 @@ export default function OrderTable() {
                   </TableCell>
                   <TableCell align="center" sx={{ color: "#000000", textAlign: "center" }}>
                     {item.orderStatus === "PENDING" && (
-                      <span style={{ width: "100px", backgroundColor: "#ED1C24", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#ED1C24", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
                         PENDING
-                      </span>
+                      </button>
                     )}
                     {item.orderStatus === "PREPARING" && (
-                      <span style={{ width: "100px", backgroundColor: "#FFC300", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#FFC300", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
                         PREPARING
-                      </span>
+                      </button>
                     )}
                     {item.orderStatus === "DELIVERING" && (
-                      <span style={{ width: "100px", backgroundColor: "#004B87", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#004B87", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
                         DELIVERING
-                      </span>
+                      </button>
                     )}
                     {item.orderStatus === "COMPLETED" && (
-                      <span style={{ width: "100px", backgroundColor: "#227F3E", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#227F3E", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
                         COMPLETED
-                      </span>
+                      </button>
+                    )}
+                    {item.orderStatus === "REFUNDING" && (
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#2596BE", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                        REFUNDING
+                      </button>
+                    )}
+                    {item.orderStatus === "CANCEL" && (
+                      <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#9E9E9E", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                        CANCEL
+                      </button>
                     )}
                   </TableCell>
                   <TableCell align="center">

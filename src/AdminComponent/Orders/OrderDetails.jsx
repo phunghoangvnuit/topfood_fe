@@ -57,8 +57,13 @@ const OrderDetails = () => {
                     COMPLETED
                   </button>
                 )}
+                {orderDetails.orderStatus === "REFUNDING" && (
+                  <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#2596BE", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                    REFUNDING
+                  </button>
+                )}
                 {orderDetails.orderStatus === "CANCEL" && (
-                  <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#D9D9D9", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
+                  <button style={{ fontSize: "14px", width: "100px", height: "30px", backgroundColor: "#9E9E9E", color: "#FFF", display: "inline-block", padding: "5px", borderRadius: "3px" }}>
                     CANCEL
                   </button>
                 )}
